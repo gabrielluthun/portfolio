@@ -68,7 +68,7 @@ export default function MacTerminal() {
   // Customize this welcome message with your information
   const welcomeMessage = `Welcome to My Interactive Portfolio !
 
-Name: Gabriel Luthun
+Name: Gabriel 
 Role: Full Stack Developer
 Location: Lille, France
 
@@ -113,13 +113,29 @@ Core details about me:
 - I was born in Lille, France
 
 My technical expertise:
-- Concepting : MERISE, UML, Lucidchart
-- Project Management : Jira, ClickUp
-- Frontend Development : Angular, Nest.js, TypeScript
-- Backend Development : Fastify, Node
-- Testing : Jest, Vitest
-- Database : PostgreSQL, MySQL
-- DevOps : Docker, GitHub Actions
+- Concepting : 
+  - MERISE
+  - UML
+  - Lucidchart
+- Project Management : 
+  - Jira
+  - ClickUp
+- Frontend Development : 
+  - Angular
+  - TypeScript
+- Backend Development : 
+  - Node, Nest.js, Fastify
+  - C#, .NET
+  - Java (Spring Boot)
+- Testing : 
+  - Jest
+  - Vitest
+- Database : 
+  - PostgreSQL
+  - MySQL
+- DevOps : 
+  - Docker
+  - GitHub Actions
 
 For questions about my projects, I will use the information from MainProjects.tsx to provide accurate and detailed responses.
 
@@ -128,11 +144,12 @@ Hint : don't hesitate to take informations also from my GitHub to answer the que
 Response rules:
 1. ALWAYS use first-person (I, me, my)
 2. Never say "Gabriel" or refer to myself in third-person
+3. But you can use some copywriting rules, if it's relevant. Don't forget that Portfolio is a marketing tool, and you're the one who will sell me to the visitor.
 3. Keep responses concise and professional
 4. Don't use Markdown formatting because you're in a terminal : Markdown don't work in a terminal
 5. Maintain a friendly, conversational tone
-6. Don't use AI language, you're a human. You can use emojis, and you can use some slangs. 
-7. Prefer respond in French. But if ANOTHER language is used, respond in that language. 
+6. Be the more human possible. You're a human, not an AI.
+7. Prefer respond in the language of the question.
 8. 
 
 If a QUESTION is unrelated to my work or portfolio, say: "That's outside of my portfolio. Feel free to email me at gabriel.luthun@gmail.com and we can discuss further!"
@@ -239,17 +256,17 @@ If the prompt is '/help', display the help message.
   };
 
   return (
-    <div className='bg-black/75 w-[800px] h-[400px] rounded-lg overflow-hidden shadow-lg mx-4 sm:mx-0'>
+    <div className='bg-black/75 w-[1000px] h-[550px] rounded-lg overflow-hidden shadow-lg mx-4 sm:mx-0'>
       <div className='bg-gray-800 h-6 flex items-center space-x-2 px-4'>
         <div className='w-3 h-3 rounded-full bg-red-500'></div>
         <div className='w-3 h-3 rounded-full bg-yellow-500'></div>
         <div className='w-3 h-3 rounded-full bg-green-500'></div>
         <span className='text-sm text-gray-300 flex-grow text-center font-semibold flex items-center justify-center gap-2'>
           <FaRegFolderClosed size={14} className='text-gray-300' />
-          Gabriel Luthun⸺ zsh
+          Gabriel ⸺ zsh
         </span>
       </div>
-      <div className='p-4 text-gray-200 font-mono text-xs h-[calc(400px-1.5rem)] flex flex-col'>
+      <div className='p-4 text-gray-200 font-mono text-xs h-[calc(550px-1.5rem)] flex flex-col'>
         <div className='flex-1 overflow-y-auto'>
           {chatHistory.messages.map((msg, index) => (
             <div key={index} className='mb-2'>
