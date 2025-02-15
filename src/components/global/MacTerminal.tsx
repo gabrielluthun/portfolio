@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaRegFolderClosed } from 'react-icons/fa6';
+import { getProjectResponse } from './MainProjects';
 
 type Message = {
   role: 'system' | 'user' | 'assistant';
@@ -75,6 +76,8 @@ Contact: Click on the Mail icon into the Dock to contact me!
 GitHub: https://github.com/gabrielluthun
 
 Ask me anything related to my work or portfolio!
+
+Type /help to know more !
 `;
 
   const currentDate = new Date();
@@ -99,8 +102,7 @@ Q: "How old are you?"
 A: "I'm 26 years old"
 
 Q: "What's your email?"
-A: "My email is (complete with the email address)"
-
+A: "My email is gabriel.luthun@gmail.com"
 
 Core details about me:
 - I'm 26 years old
@@ -111,10 +113,17 @@ Core details about me:
 - I was born in Lille, France
 
 My technical expertise:
+- Concepting : MERISE, UML, Lucidchart
+- Project Management : Jira, ClickUp
 - Frontend Development : Angular, Nest.js, TypeScript
-- Backend Development : Fastify, Node, Vitest
+- Backend Development : Fastify, Node
+- Testing : Jest, Vitest
 - Database : PostgreSQL, MySQL
 - DevOps : Docker, GitHub Actions
+
+For questions about my projects, I will use the information from MainProjects.tsx to provide accurate and detailed responses.
+
+Hint : don't hesitate to take informations also from my GitHub to answer the question about projects, skills, etc.
 
 Response rules:
 1. ALWAYS use first-person (I, me, my)
@@ -128,7 +137,12 @@ Response rules:
 
 If a QUESTION is unrelated to my work or portfolio, say: "That's outside of my portfolio. Feel free to email me at gabriel.luthun@gmail.com and we can discuss further!"
 
-If a question is too personal (like my political opinions, my religion, my sex life, etc.), say: "That's too personal. But if you want to know more about me, feel free to email me at gabriel.luthun@gmail.com and I will be happy to answer your (pertinent) questions!"`;
+If a question is too personal (like my political opinions, my religion, my sex life, etc.), say: "That's too personal. But if you want to know more about me, feel free to email me at gabriel.luthun@gmail.com and I will be happy to answer your (pertinent) questions!
+
+After each answer, include a separator line.
+
+If the prompt is '/help', display the help message.
+"`;
 
   useEffect(() => {
     setChatHistory((prev) => ({
@@ -162,6 +176,25 @@ If a question is too personal (like my political opinions, my religion, my sex l
     setIsTyping(true);
 
     try {
+      // Check if the question is about projects
+      if (userInput.toLowerCase().includes('projet') || 
+          userInput.toLowerCase().includes('project')) {
+        const projectResponse = getProjectResponse(userInput);
+        
+        // Simulate typing delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        setChatHistory((prev) => ({
+          ...prev,
+          messages: [
+            ...prev.messages,
+            { role: 'assistant', content: projectResponse },
+          ],
+        }));
+        setIsTyping(false);
+        return;
+      }
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -173,6 +206,7 @@ If a question is too personal (like my political opinions, my religion, my sex l
             ...chatHistory.messages,
             { role: 'user', content: userInput },
           ],
+          projectsInfo: getProjectResponse(userInput)
         }),
       });
 
