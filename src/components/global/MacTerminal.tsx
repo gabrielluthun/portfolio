@@ -18,6 +18,8 @@ const PLACEHOLDER_MESSAGES = [
   'What are your skills?',
   'Where are you located?',
   'What projects have you worked on?',
+  'What is your email?',
+  'Can I go to your GitHub?',
 ];
 
 export default function MacTerminal() {
@@ -63,16 +65,16 @@ export default function MacTerminal() {
   }, [placeholder, isDeleting, currentPlaceholderIndex]);
 
   // Customize this welcome message with your information
-  const welcomeMessage = `Welcome to My Portfolio
+  const welcomeMessage = `Welcome to My Interactive Portfolio !
 
 Name: Gabriel Luthun
 Role: Full Stack Developer
 Location: Lille, France
 
-Contact: gabriel.luthun@gmail.com
+Contact: Click on the Mail icon into the Dock to contact me!
 GitHub: https://github.com/gabrielluthun
 
-This is my interactive portfolio, ask me anything!
+Ask me anything!
 `;
 
   const currentDate = new Date();
@@ -91,10 +93,13 @@ Q: "Where do you live?"
 A: "I live in Lille, France"
 
 Q: "What's your background?"
-A: "I'm a Full Stack Developer with experience in React, Next.js, and Node.js"
+A: "I'm a Full Stack Developer with experience in Angular, Nest.js, and Node.js"
 
 Q: "How old are you?"
 A: "I'm 26 years old"
+
+Q: "What's your email?"
+A: "My email is (complete with the email address)"
 
 Core details about me:
 - I'm 26 years old
@@ -115,7 +120,7 @@ Response rules:
 1. ALWAYS use first-person (I, me, my)
 2. Never say "Gabriel" or refer to myself in third-person
 3. Keep responses concise and professional
-4. Use markdown formatting when appropriate
+4. Don't use Markdown formatting because you're in a terminal : Markdown don't work in a terminal
 5. Maintain a friendly, conversational tone
 
 If a question is unrelated to my work or portfolio, say: "That's outside my area of expertise. Feel free to email me at gabriel.luthun@gmail.com and we can discuss further!"`;
@@ -202,7 +207,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
         <div className='w-3 h-3 rounded-full bg-green-500'></div>
         <span className='text-sm text-gray-300 flex-grow text-center font-semibold flex items-center justify-center gap-2'>
           <FaRegFolderClosed size={14} className='text-gray-300' />
-          johndoe.com ⸺ zsh
+          gabrielluthun.com ⸺ zsh
         </span>
       </div>
       <div className='p-4 text-gray-200 font-mono text-xs h-[calc(400px-1.5rem)] flex flex-col'>

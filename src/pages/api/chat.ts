@@ -12,7 +12,7 @@ export const POST: APIRoute = async ({ request }) => {
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: body.messages,
-      temperature: 0.7,
+      temperature: 1,
       max_tokens: 250,
     });
 
