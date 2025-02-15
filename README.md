@@ -1,6 +1,8 @@
-# Portfolio  
+# Portfolio interactif
 
 Un portfolio web inspiré de l'interface du terminal natif de macOS, construit avec Astro et React.
+
+![Image du portfolio interactif](/src/assets/images/portfolio-readme.png)
 
 ## Technologies Utilisées
 
@@ -12,4 +14,5 @@ Un portfolio web inspiré de l'interface du terminal natif de macOS, construit a
 - [React Icons](https://react-icons.github.io/react-icons/) - Bibliothèque d'icônes
 
 ---
-Template inspiré de [ce repo](https://github.com/JohnnyCulbreth/macos-terminal-portfolio)
+
+*Portfolio inspiré de [ce repo](https://github.com/JohnnyCulbreth/macos-terminal-portfolio)*
