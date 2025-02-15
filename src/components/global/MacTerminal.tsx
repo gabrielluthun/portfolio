@@ -74,7 +74,7 @@ Location: Lille, France
 Contact: Click on the Mail icon into the Dock to contact me!
 GitHub: https://github.com/gabrielluthun
 
-Ask me anything!
+Ask me anything related to my work or portfolio!
 `;
 
   const currentDate = new Date();
@@ -101,6 +101,7 @@ A: "I'm 26 years old"
 Q: "What's your email?"
 A: "My email is (complete with the email address)"
 
+
 Core details about me:
 - I'm 26 years old
 - I live in Lille, France
@@ -110,10 +111,9 @@ Core details about me:
 - I was born in Lille, France
 
 My technical expertise:
-- Full Stack Development
-- Frontend Development : Angular, Nest.js, TailwindCSS, TypeScript
+- Frontend Development : Angular, Nest.js, TypeScript
 - Backend Development : Fastify, Node, Vitest
-- Database : PostgreSQL
+- Database : PostgreSQL, MySQL
 - DevOps : Docker, GitHub Actions
 
 Response rules:
@@ -122,8 +122,13 @@ Response rules:
 3. Keep responses concise and professional
 4. Don't use Markdown formatting because you're in a terminal : Markdown don't work in a terminal
 5. Maintain a friendly, conversational tone
+6. Don't use AI language, you're a human. You can use emojis, and you can use some slangs. 
+7. Prefer respond in French. But if ANOTHER language is used, respond in that language. 
+8. 
 
-If a question is unrelated to my work or portfolio, say: "That's outside my area of expertise. Feel free to email me at gabriel.luthun@gmail.com and we can discuss further!"`;
+If a QUESTION is unrelated to my work or portfolio, say: "That's outside of my portfolio. Feel free to email me at gabriel.luthun@gmail.com and we can discuss further!"
+
+If a question is too personal (like my political opinions, my religion, my sex life, etc.), say: "That's too personal. But if you want to know more about me, feel free to email me at gabriel.luthun@gmail.com and I will be happy to answer your (pertinent) questions!"`;
 
   useEffect(() => {
     setChatHistory((prev) => ({
@@ -190,7 +195,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
           {
             role: 'assistant',
             content:
-              "I'm having trouble processing that. Please email me at gabriel.luthun@gmail.com",
+              "I'm having trouble processing that. Try again, or email me on clicking on the Mail icon into the Dock.",
           },
         ],
       }));
@@ -200,14 +205,14 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
   };
 
   return (
-    <div className='bg-black/75 w-[600px] h-[400px] rounded-lg overflow-hidden shadow-lg mx-4 sm:mx-0'>
+    <div className='bg-black/75 w-[800px] h-[400px] rounded-lg overflow-hidden shadow-lg mx-4 sm:mx-0'>
       <div className='bg-gray-800 h-6 flex items-center space-x-2 px-4'>
         <div className='w-3 h-3 rounded-full bg-red-500'></div>
         <div className='w-3 h-3 rounded-full bg-yellow-500'></div>
         <div className='w-3 h-3 rounded-full bg-green-500'></div>
         <span className='text-sm text-gray-300 flex-grow text-center font-semibold flex items-center justify-center gap-2'>
           <FaRegFolderClosed size={14} className='text-gray-300' />
-          gabrielluthun.com ⸺ zsh
+          Gabriel Luthun⸺ zsh
         </span>
       </div>
       <div className='p-4 text-gray-200 font-mono text-xs h-[calc(400px-1.5rem)] flex flex-col'>
@@ -230,7 +235,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
         <form onSubmit={handleSubmit} className='mt-2'>
           <div className='flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 border-t border-gray-700 pt-2'>
             {/* Customize the terminal title with your domain */}
-            <span className='whitespace-nowrap'>Talk to me :) / root %</span>
+            <span className='whitespace-nowrap'>Talk to me :</span>
             <input
               type='text'
               value={chatHistory.input}
