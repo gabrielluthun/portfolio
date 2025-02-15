@@ -3,15 +3,16 @@ import { IoIosMail, IoIosCall } from 'react-icons/io';
 
 export default function MobileDock() {
   const handleEmailClick = () => {
-    window.location.href = 'mailto:john@johndoe.com';
+    window.location.href = 'mailto:gabriel.luthun@gmail.com';
   };
 
   const handleGithubClick = () => {
-    window.open('https://github.com/johndoe', '_blank');
+    window.open('https://github.com/gabrielluthun', '_blank');
   };
 
   const handleSpotifyClick = () => {
     window.open('https://open.spotify.com', '_blank');
+    // Empty : don't have a spotify public playlist
   };
 
   return (

@@ -16,8 +16,7 @@ export default function DesktopDock() {
   };
 
   const handleCalendarClick = () => {
-    window.open('https://calendly.com/', '_blank');
-    // Empty : don't have a calendar app
+    window.open('https://calendly.com/gabriel-luthun/portfolio', '_blank');
   };
 
   const handleSpotifyClick = () => {
@@ -65,7 +64,7 @@ export default function DesktopDock() {
             <div className='w-14 h-14 bg-gradient-to-t from-blue-600 to-blue-400 rounded-xl flex items-center justify-center shadow-lg'>
               <IoIosMail size={45} className='text-white' />
             </div>
-            {hoveredIcon === 'email' && <Tooltip text='Email Me' />}
+            {hoveredIcon === 'email' && <Tooltip text='Email Me :)' />}
           </button>
 
           {/* Github */}
@@ -78,7 +77,7 @@ export default function DesktopDock() {
             <div className='w-14 h-14  bg-gradient-to-t from-black to-black/60 rounded-xl flex items-center justify-center shadow-lg'>
               <BsGithub size={45} className='text-gray-100' />
             </div>
-            {hoveredIcon === 'github' && <Tooltip text='My GitHub' />}
+            {hoveredIcon === 'github' && <Tooltip text='My GitHub ' />}
           </button>
 
           {/* Calendar */}

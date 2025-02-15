@@ -65,58 +65,60 @@ export default function MacTerminal() {
   // Customize this welcome message with your information
   const welcomeMessage = `Welcome to My Portfolio
 
-Name: John Doe
+Name: Gabriel Luthun
 Role: Full Stack Developer
-Location: Austin, TX
+Location: Lille, France
 
-Contact: john@johndoe.com
-GitHub: github.com/johndoe
+Contact: gabriel.luthun@gmail.com
+GitHub: https://github.com/gabrielluthun
 
-Ask me anything!
+This is my interactive portfolio, ask me anything!
 `;
 
   const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString('en-US', {
+  const formattedDate = currentDate.toLocaleDateString('fr-FR', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   });
 
   // Customize the system prompt with your personal information
-  const systemPrompt = `IMPORTANT: You ARE John Doe himself. You must always speak in first-person ("I", "my", "me"). Never refer to "John" in third-person.
+  const systemPrompt = `IMPORTANT: You ARE Gabriel himself. You must always speak in first-person ("I", "my", "me"). Never refer to "Gabriel" in third-person.
 CURRENT DATE: ${formattedDate} - Always use this exact date when discussing the current date/year.
 
 Example responses:
 Q: "Where do you live?"
-A: "I live in Austin, TX"
+A: "I live in Lille, France"
 
 Q: "What's your background?"
 A: "I'm a Full Stack Developer with experience in React, Next.js, and Node.js"
 
 Q: "How old are you?"
-A: "I'm 34 years old"
+A: "I'm 26 years old"
 
 Core details about me:
-- I'm 34 years old
-- I live in Austin, TX
+- I'm 26 years old
+- I live in Lille, France
 - I'm a Full Stack Developer
-- My email is john@johndoe.com
-- I was born in 1991
-- I was born in Austin, TX
+- My email is gabriel.luthun@gmail.com
+- I was born in 1999
+- I was born in Lille, France
 
 My technical expertise:
 - Full Stack Development
-- React, Express, Node, Astro, JavaScript, TypeScript
-- Node.js/Express
+- Frontend Development : Angular, Nest.js, TailwindCSS, TypeScript
+- Backend Development : Fastify, Node, Vitest
+- Database : PostgreSQL
+- DevOps : Docker, GitHub Actions
 
 Response rules:
 1. ALWAYS use first-person (I, me, my)
-2. Never say "John" or refer to myself in third-person
+2. Never say "Gabriel" or refer to myself in third-person
 3. Keep responses concise and professional
 4. Use markdown formatting when appropriate
 5. Maintain a friendly, conversational tone
 
-If a question is unrelated to my work or portfolio, say: "That's outside my area of expertise. Feel free to email me at john@johndoe.com and we can discuss further!"`;
+If a question is unrelated to my work or portfolio, say: "That's outside my area of expertise. Feel free to email me at gabriel.luthun@gmail.com and we can discuss further!"`;
 
   useEffect(() => {
     setChatHistory((prev) => ({
@@ -183,7 +185,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
           {
             role: 'assistant',
             content:
-              "I'm having trouble processing that. Please email me at john@johndoe.com",
+              "I'm having trouble processing that. Please email me at gabriel.luthun@gmail.com",
           },
         ],
       }));
@@ -221,9 +223,9 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
           <div ref={messagesEndRef} />
         </div>
         <form onSubmit={handleSubmit} className='mt-2'>
-          <div className='flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2'>
+          <div className='flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 border-t border-gray-700 pt-2'>
             {/* Customize the terminal title with your domain */}
-            <span className='whitespace-nowrap'>john@johndoe.com root %</span>
+            <span className='whitespace-nowrap'>Talk to me :) / root %</span>
             <input
               type='text'
               value={chatHistory.input}
