@@ -27,6 +27,7 @@ Ce portfolio propose **deux façons** de découvrir mon travail :
 - [Vite](https://vitejs.dev/) - Bundler
 - [Perplexity API](https://www.perplexity.ai/api) - Intégration IA
 - [React Icons](https://react-icons.github.io/react-icons/) - Bibliothèque d'icônes
+- [Vercel](https://vercel.com/) - Hébergement
 
 ---
 
