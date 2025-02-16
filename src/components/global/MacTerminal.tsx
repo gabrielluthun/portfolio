@@ -266,17 +266,17 @@ If the prompt is '/help', display the help message.
           Gabriel ⸺ zsh
         </span>
       </div>
-      <div className='p-4 text-gray-200 font-mono text-xs h-[calc(550px-1.5rem)] flex flex-col'>
+      <div className='p-4 text-gray-200 font-mono text-sm sm:text-base h-[calc(550px-1.5rem)] flex flex-col'>
         <div className='flex-1 overflow-y-auto'>
           {chatHistory.messages.map((msg, index) => (
             <div key={index} className='mb-2'>
               {msg.role === 'user' ? (
                 <div className='flex items-start space-x-2'>
-                  <span className='text-green-400'>{'>'}</span>
-                  <pre className='whitespace-pre-wrap'>{msg.content}</pre>
+                  <span className='text-green-400 text-base sm:text-lg'>{'>'}</span>
+                  <pre className='whitespace-pre-wrap text-sm sm:text-base'>{msg.content}</pre>
                 </div>
               ) : (
-                <pre className='whitespace-pre-wrap'>{msg.content}</pre>
+                <pre className='whitespace-pre-wrap text-sm sm:text-base'>{msg.content}</pre>
               )}
             </div>
           ))}
