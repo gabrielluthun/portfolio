@@ -2,9 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FadeIn from "../../components/FadeIn.tsx";
 import ProjectGrid from "../../components/projects/ProjectGrid.tsx";
-import { getAllProjects } from "../../services/project.service";
+import { findAllProjects } from "../../data/repositories/project.repository";
 
-const projects = getAllProjects();
+const projects = findAllProjects();
 ---
 
 <BaseLayout

@@ -1,6 +1,6 @@
 import type { Project } from "../../types/project";
-import { resolvePreviewImage } from "../../services/project.service";
 import ProjectCard from "./ProjectCard";
+import { resolvePreviewImage } from "./preview-image";
 
 type ProjectGridProps = {
   projects: Project[];
