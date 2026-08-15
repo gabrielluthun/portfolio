@@ -1,69 +1,22 @@
-import { useState, type FormEvent } from "react";
 import {
   CONTACT_FIELD_LIMITS,
-  submitContact,
-  type ContactFieldErrors,
+  WEB3FORMS_ENDPOINT,
 } from "../../services/contact.service";
-
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
-
-const emptyFields = {
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-};
-
-function fieldErrorId(field: string) {
-  return `contact-${field}-error`;
-}
+import ContactField, { contactFieldErrorId } from "./ContactField";
+import { useContactForm } from "./useContactForm";
 
 export default function ContactForm() {
-  const [values, setValues] = useState(emptyFields);
-  const [consent, setConsent] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
-  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">(
-    "idle",
-  );
-  const [message, setMessage] = useState("");
-  const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
-
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const honeypot = form.elements.namedItem("botcheck");
-
-    if (honeypot instanceof HTMLInputElement && honeypot.checked) {
-      setStatus("success");
-      setMessage("Votre message a bien été envoyé.");
-      setFieldErrors({});
-      return;
-    }
-
-    setStatus("pending");
-    setMessage("");
-
-    const result = await submitContact({
-      ...values,
-      consent,
-    });
-
-    if (result.ok) {
-      setStatus("success");
-      setMessage(result.message);
-      setFieldErrors({});
-      setValues(emptyFields);
-      setConsent(false);
-      return;
-    }
-
-    setStatus("error");
-    setMessage(result.message);
-    setFieldErrors(result.fields ?? {});
-  }
-
-  const inputClass =
-    "w-full rounded-md border border-border bg-bg px-3 py-2 text-fg outline-none focus:border-accent";
+  const {
+    values,
+    setField,
+    consent,
+    setConsent,
+    fieldErrors,
+    status,
+    message,
+    accessKey,
+    onSubmit,
+  } = useContactForm();
 
   return (
     <form
@@ -82,111 +35,46 @@ export default function ContactForm() {
         className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
       />
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor="contact-name" className="text-sm font-medium text-fg">
-          Nom
-        </label>
-        <input
-          id="contact-name"
-          name="name"
-          type="text"
-          autoComplete="name"
-          required
-          maxLength={CONTACT_FIELD_LIMITS.name}
-          className={inputClass}
-          value={values.name}
-          aria-invalid={Boolean(fieldErrors.name)}
-          aria-describedby={fieldErrors.name ? fieldErrorId("name") : undefined}
-          onChange={(event) =>
-            setValues((current) => ({ ...current, name: event.target.value }))
-          }
-        />
-        {fieldErrors.name ? (
-          <p id={fieldErrorId("name")} className="m-0 text-sm text-accent">
-            {fieldErrors.name}
-          </p>
-        ) : null}
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <label htmlFor="contact-email" className="text-sm font-medium text-fg">
-          E-mail
-        </label>
-        <input
-          id="contact-email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-          maxLength={CONTACT_FIELD_LIMITS.email}
-          className={inputClass}
-          value={values.email}
-          aria-invalid={Boolean(fieldErrors.email)}
-          aria-describedby={fieldErrors.email ? fieldErrorId("email") : undefined}
-          onChange={(event) =>
-            setValues((current) => ({ ...current, email: event.target.value }))
-          }
-        />
-        {fieldErrors.email ? (
-          <p id={fieldErrorId("email")} className="m-0 text-sm text-accent">
-            {fieldErrors.email}
-          </p>
-        ) : null}
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <label htmlFor="contact-subject" className="text-sm font-medium text-fg">
-          Sujet
-        </label>
-        <input
-          id="contact-subject"
-          name="subject"
-          type="text"
-          required
-          maxLength={CONTACT_FIELD_LIMITS.subject}
-          className={inputClass}
-          value={values.subject}
-          aria-invalid={Boolean(fieldErrors.subject)}
-          aria-describedby={
-            fieldErrors.subject ? fieldErrorId("subject") : undefined
-          }
-          onChange={(event) =>
-            setValues((current) => ({ ...current, subject: event.target.value }))
-          }
-        />
-        {fieldErrors.subject ? (
-          <p id={fieldErrorId("subject")} className="m-0 text-sm text-accent">
-            {fieldErrors.subject}
-          </p>
-        ) : null}
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <label htmlFor="contact-message" className="text-sm font-medium text-fg">
-          Message
-        </label>
-        <textarea
-          id="contact-message"
-          name="message"
-          rows={6}
-          required
-          maxLength={CONTACT_FIELD_LIMITS.message}
-          className={inputClass}
-          value={values.message}
-          aria-invalid={Boolean(fieldErrors.message)}
-          aria-describedby={
-            fieldErrors.message ? fieldErrorId("message") : undefined
-          }
-          onChange={(event) =>
-            setValues((current) => ({ ...current, message: event.target.value }))
-          }
-        />
-        {fieldErrors.message ? (
-          <p id={fieldErrorId("message")} className="m-0 text-sm text-accent">
-            {fieldErrors.message}
-          </p>
-        ) : null}
-      </div>
+      <ContactField
+        id="contact-name"
+        name="name"
+        label="Nom"
+        autoComplete="name"
+        maxLength={CONTACT_FIELD_LIMITS.name}
+        value={values.name}
+        error={fieldErrors.name}
+        onChange={(value) => setField("name", value)}
+      />
+      <ContactField
+        id="contact-email"
+        name="email"
+        label="E-mail"
+        type="email"
+        autoComplete="email"
+        maxLength={CONTACT_FIELD_LIMITS.email}
+        value={values.email}
+        error={fieldErrors.email}
+        onChange={(value) => setField("email", value)}
+      />
+      <ContactField
+        id="contact-subject"
+        name="subject"
+        label="Sujet"
+        maxLength={CONTACT_FIELD_LIMITS.subject}
+        value={values.subject}
+        error={fieldErrors.subject}
+        onChange={(value) => setField("subject", value)}
+      />
+      <ContactField
+        id="contact-message"
+        name="message"
+        label="Message"
+        type="textarea"
+        maxLength={CONTACT_FIELD_LIMITS.message}
+        value={values.message}
+        error={fieldErrors.message}
+        onChange={(value) => setField("message", value)}
+      />
 
       <div className="flex flex-col gap-2">
         <label htmlFor="contact-consent" className="flex items-start gap-3 text-sm text-fg">
@@ -199,7 +87,7 @@ export default function ContactForm() {
             checked={consent}
             aria-invalid={Boolean(fieldErrors.consent)}
             aria-describedby={
-              fieldErrors.consent ? fieldErrorId("consent") : undefined
+              fieldErrors.consent ? contactFieldErrorId("consent") : undefined
             }
             onChange={(event) => setConsent(event.target.checked)}
           />
@@ -211,7 +99,7 @@ export default function ContactForm() {
           </span>
         </label>
         {fieldErrors.consent ? (
-          <p id={fieldErrorId("consent")} className="m-0 text-sm text-accent">
+          <p id={contactFieldErrorId("consent")} className="m-0 text-sm text-accent">
             {fieldErrors.consent}
           </p>
         ) : null}
