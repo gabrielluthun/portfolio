@@ -5,6 +5,7 @@ import {
   findAllProjects,
   findProjectById,
 } from "../../data/repositories/project.repository";
+import { sitePath } from "../../lib/site-path";
 
 export function getStaticPaths() {
   return findAllProjects().map((project) => ({
@@ -15,16 +16,16 @@ export function getStaticPaths() {
 const { id } = Astro.params;
 
 if (!id) {
-  return Astro.redirect(`${import.meta.env.BASE_URL}404`);
+  return Astro.redirect(sitePath("404", import.meta.env.BASE_URL));
 }
 
 const project = findProjectById(id);
 
 if (!project) {
-  return Astro.redirect(`${import.meta.env.BASE_URL}404`);
+  return Astro.redirect(sitePath("404", import.meta.env.BASE_URL));
 }
 
-const catalogHref = `${import.meta.env.BASE_URL}projets`;
+const catalogHref = sitePath("projets", import.meta.env.BASE_URL);
 const previewSrc = resolvePreviewImage(
   project.previewImage,
   import.meta.env.BASE_URL,
