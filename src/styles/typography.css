@@ -1,53 +1,80 @@
-html {
-  font-family: var(--font-sans);
-  color: var(--color-fg);
-  background-color: var(--color-bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-fg);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-body {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.7;
-}
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      transition:
+        --palette-bg 0.45s ease,
+        --palette-bg-muted 0.45s ease,
+        --palette-fg 0.45s ease,
+        --palette-fg-muted 0.45s ease,
+        --palette-border 0.45s ease,
+        --palette-accent 0.45s ease,
+        --palette-accent-hover 0.45s ease,
+        --palette-accent-fg 0.45s ease;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  color: var(--color-fg);
-}
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.45s;
+    }
 
-h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-}
+    ::view-transition-old(site-header),
+    ::view-transition-new(site-header) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+  }
 
-h2 {
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
-}
+  body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
 
-h3 {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--color-fg);
+  }
 
-p {
-  color: var(--color-fg-muted);
-  max-width: 65ch;
-}
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+  }
 
-a {
-  color: var(--color-accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
+  h2 {
+    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  }
 
-a:hover {
-  color: var(--color-accent-hover);
+  h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  p {
+    color: var(--color-fg-muted);
+    max-width: 65ch;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+  }
 }

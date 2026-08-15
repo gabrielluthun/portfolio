@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("home links to the project catalog", async ({ page }) => {
   await page.goto("./");
-  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Gabriel Luthun", level: 1 })).toBeVisible();
   await page.getByRole("link", { name: "Projets", exact: true }).click();
   await expect(page).toHaveURL(/\/projets\/?$/);
   await expect(page.getByRole("heading", { name: "Projets" })).toBeVisible();
@@ -25,7 +25,7 @@ test("MaxTracker has a demo link and Geekment does not", async ({ page }) => {
   await page.goto("./projets/geekment-votre/");
   await expect(page.getByRole("heading", { name: "Geekment Vôtre" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Voir la démo" })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "Code source" })).toBeVisible();
+  await expect(page.locator("article").getByRole("link", { name: "GitHub" })).toBeVisible();
 });
 
 test("unknown route shows the French 404 page", async ({ page }) => {

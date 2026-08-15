@@ -3,6 +3,7 @@ export type Project = {
   title: string;
   shortDescription: string;
   longDescription: string;
+  benefits: string;
   tags: string[];
   previewImage: string;
   previewFit?: "cover" | "contain";

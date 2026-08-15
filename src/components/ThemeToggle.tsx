@@ -11,13 +11,15 @@ export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const sync = () => {
-      setIsDark(document.documentElement.classList.contains("dark"));
+    const syncFromStorage = () => {
+      const dark = localStorage.getItem(STORAGE_KEY) === "dark";
+      document.documentElement.classList.toggle("dark", dark);
+      setIsDark(dark);
     };
 
-    sync();
-    document.addEventListener("astro:after-swap", sync);
-    return () => document.removeEventListener("astro:after-swap", sync);
+    syncFromStorage();
+    document.addEventListener("astro:after-swap", syncFromStorage);
+    return () => document.removeEventListener("astro:after-swap", syncFromStorage);
   }, []);
 
   return (
