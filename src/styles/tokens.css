@@ -1,0 +1,46 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: var(--palette-bg);
+  --color-bg-muted: var(--palette-bg-muted);
+  --color-fg: var(--palette-fg);
+  --color-fg-muted: var(--palette-fg-muted);
+  --color-border: var(--palette-border);
+  --color-accent: var(--palette-accent);
+  --color-accent-hover: var(--palette-accent-hover);
+  --color-accent-fg: var(--palette-accent-fg);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+}
+
+:root {
+  color-scheme: light;
+
+  --palette-bg: #ffffff;
+  --palette-bg-muted: #f5f5f5;
+  --palette-fg: #171717;
+  --palette-fg-muted: #525252;
+  --palette-border: #e5e5e5;
+  --palette-accent: #0f766e;
+  --palette-accent-hover: #0d9488;
+  --palette-accent-fg: #ffffff;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --palette-bg: #0a0a0a;
+  --palette-bg-muted: #171717;
+  --palette-fg: #f5f5f5;
+  --palette-fg-muted: #a3a3a3;
+  --palette-border: #262626;
+  --palette-accent: #2dd4bf;
+  --palette-accent-hover: #5eead4;
+  --palette-accent-fg: #0a0a0a;
+}
