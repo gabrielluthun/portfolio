@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SmoothScroll from "../components/SmoothScroll.tsx";
+import { sitePath } from "../lib/site-path";
 import "../styles/global.css";
 
 type Props = {
@@ -14,7 +15,7 @@ const {
   title = "Portfolio",
   description = "Portfolio de concepteur et développeur d'applications.",
 } = Astro.props;
-const favicon = `${import.meta.env.BASE_URL}favicon.svg`;
+const favicon = sitePath("favicon.svg", import.meta.env.BASE_URL);
 ---
 
 <!doctype html>

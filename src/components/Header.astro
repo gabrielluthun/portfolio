@@ -1,8 +1,9 @@
 ---
 import ThemeToggle from "./ThemeToggle.tsx";
+import { sitePath } from "../lib/site-path";
 
-const home = import.meta.env.BASE_URL;
-const projets = `${import.meta.env.BASE_URL}projets`;
+const home = sitePath("", import.meta.env.BASE_URL);
+const projets = sitePath("projets", import.meta.env.BASE_URL);
 ---
 
 <header
