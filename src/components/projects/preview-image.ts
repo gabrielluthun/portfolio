@@ -1,8 +1,9 @@
+import { sitePath } from "../../lib/site-path";
+
 export function resolvePreviewImage(path: string, baseUrl: string): string {
   if (/^https?:\/\//i.test(path)) {
     return path;
   }
 
-  const prefix = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-  return `${prefix}${path.replace(/^\//, "")}`;
+  return sitePath(path, baseUrl);
 }
