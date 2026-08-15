@@ -1,0 +1,14 @@
+---
+import FadeIn from "../FadeIn.tsx";
+import ContactForm from "./ContactForm.tsx";
+---
+
+<section id="contact" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
+  <FadeIn client:visible />
+  <h2 class="mb-4">Contact</h2>
+  <p class="mb-10">
+    Écrivez-moi via ce formulaire. L'envoi utilise Web3Forms ; sans clé
+    d'accès, un message d'erreur s'affichera.
+  </p>
+  <ContactForm client:visible />
+</section>
