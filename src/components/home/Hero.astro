@@ -1,5 +1,4 @@
 ---
-import FadeIn from "../FadeIn.tsx";
 import HeroTypewriter from "./HeroTypewriter.tsx";
 import { sitePath } from "../../lib/site-path";
 
@@ -8,21 +7,20 @@ const projets = sitePath("projets", import.meta.env.BASE_URL);
 const portrait = sitePath("assets/portrait.png", import.meta.env.BASE_URL);
 ---
 
-<section class="mx-auto max-w-6xl px-6 pb-8 pt-24 sm:pt-32">
-  <FadeIn client:visible />
-  <div class="flex flex-col items-center gap-12 md:flex-row md:items-center md:justify-between md:gap-16">
+<section class="mx-auto max-w-6xl px-4 pb-8 pt-20 sm:px-6 sm:pt-32">
+  <div class="flex flex-col items-center gap-8 sm:gap-12 md:flex-row md:items-center md:justify-between md:gap-16">
     <div class="min-w-0 w-full md:flex-1">
       <HeroTypewriter client:load />
-      <div class="mt-10 flex flex-wrap gap-4">
+      <div class="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-4">
         <a
           href={projets}
-          class="rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-fg no-underline hover:bg-accent-hover hover:text-accent-fg"
+          class="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg no-underline hover:bg-accent-hover hover:text-accent-fg sm:px-5 sm:py-3"
         >
           Voir les projets
         </a>
         <a
           href={`${home}#contact`}
-          class="rounded-md border border-border px-5 py-3 text-sm font-medium text-fg no-underline hover:border-accent hover:text-accent"
+          class="rounded-md border border-border px-4 py-2.5 text-sm font-medium text-fg no-underline hover:border-accent hover:text-accent sm:px-5 sm:py-3"
         >
           Contact
         </a>
@@ -34,7 +32,7 @@ const portrait = sitePath("assets/portrait.png", import.meta.env.BASE_URL);
       width="288"
       height="288"
       fetchpriority="high"
-      class="h-48 w-48 shrink-0 overflow-hidden rounded-full object-cover md:h-72 md:w-72"
+      class="h-36 w-36 shrink-0 overflow-hidden rounded-full object-cover sm:h-48 sm:w-48 md:h-72 md:w-72"
     />
   </div>
 </section>

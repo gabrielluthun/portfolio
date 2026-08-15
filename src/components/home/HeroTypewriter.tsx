@@ -97,29 +97,29 @@ export default function HeroTypewriter() {
 
   return (
     <>
-      <p className="relative mb-4 text-sm font-medium tracking-wide text-accent uppercase">
+      <p className="relative mb-4 min-w-0 text-sm font-medium tracking-wide text-accent uppercase">
         <span className="invisible" aria-hidden="true">
           {ROLE}
         </span>
-        <span className="absolute inset-0">
+        <span className="absolute inset-0 break-words">
           {role}
           {line === "role" ? <Caret /> : null}
         </span>
       </p>
-      <h1 className="relative max-w-4xl">
+      <h1 className="relative max-w-4xl min-w-0">
         <span className="invisible" aria-hidden="true">
           {NAME}
         </span>
-        <span className="absolute inset-0">
+        <span className="absolute inset-0 break-words">
           {name}
           {line === "name" ? <Caret /> : null}
         </span>
       </h1>
-      <p className="relative mt-6 max-w-xl text-lg">
+      <p className="relative mt-4 max-w-xl min-w-0 text-base sm:mt-6 sm:text-lg">
         <span className="invisible" aria-hidden="true">
           {TAGLINE}
         </span>
-        <span className="absolute inset-0">
+        <span className="absolute inset-0 break-words">
           {tagline}
           {line === "tagline" ? <Caret /> : null}
         </span>
