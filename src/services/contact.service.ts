@@ -24,6 +24,10 @@ export const CONTACT_SUBMIT_COOLDOWN_MS = 30_000;
 
 let lastSubmitAttemptAt = 0;
 
+export function resetContactSubmitCooldown(): void {
+  lastSubmitAttemptAt = 0;
+}
+
 function trimPayload(payload: ContactPayload): ContactPayload {
   return {
     name: payload.name.trim(),
