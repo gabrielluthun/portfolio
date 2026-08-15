@@ -1,4 +1,5 @@
 import type { Project } from "../../types/project";
+import { resolvePreviewImage } from "../../services/project.service";
 import ProjectCard from "./ProjectCard";
 
 type ProjectGridProps = {
@@ -19,6 +20,7 @@ export default function ProjectGrid({ projects, baseUrl }: ProjectGridProps) {
           <ProjectCard
             project={project}
             href={`${prefix}projet/${project.id}`}
+            previewSrc={resolvePreviewImage(project.previewImage, prefix)}
           />
         </li>
       ))}
