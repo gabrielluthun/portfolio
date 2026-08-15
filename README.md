@@ -1,7 +1,9 @@
-# Portfolio CDA
+# Portfolio — Gabriel Luthun
 
-Site portfolio en français (concepteur et développeur d'applications / full-stack).  
-URL visée : [https://gabrielluthun.github.io/portfolio/](https://gabrielluthun.github.io/portfolio/)
+Site personnel en français.  
+URL : [https://gabrielluthun.github.io/portfolio/](https://gabrielluthun.github.io/portfolio/)
+
+Développeur full-stack. Je transforme des besoins métier en produits simples et utiles.
 
 ## Stack
 
@@ -10,10 +12,10 @@ URL visée : [https://gabrielluthun.github.io/portfolio/](https://gabrielluthun.
 - Tailwind CSS v4
 - Lenis (smooth scroll)
 - View Transitions Astro
-- Données mockées (`src/data/projects.json`)
+- Projets : `src/data/projects.json` (MaxTracker, Geekment Vôtre, Hub des Savoirs)
 - Formulaire de contact : [Web3Forms](https://web3forms.com/)
 
-Architecture N-tier : **présentation** (`src/pages`, `src/components`) → **services** (`src/services`) → **données** (`src/data/repositories`).
+Architecture : **présentation** (`src/pages`, `src/components`) → **services** (`src/services`) → **données** (`src/data/repositories`).
 
 ## Prérequis
 
