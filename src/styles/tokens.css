@@ -1,5 +1,53 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
+@property --palette-bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+
+@property --palette-bg-muted {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f5f5f5;
+}
+
+@property --palette-fg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #171717;
+}
+
+@property --palette-fg-muted {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #525252;
+}
+
+@property --palette-border {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e5e5e5;
+}
+
+@property --palette-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #0f766e;
+}
+
+@property --palette-accent-hover {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #0d9488;
+}
+
+@property --palette-accent-fg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
