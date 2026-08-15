@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/home/Hero.astro";
+import About from "../components/home/About.astro";
+import FeaturedProjects from "../components/home/FeaturedProjects.astro";
 ---
 
 <BaseLayout title="Portfolio">
-  <section class="mx-auto max-w-6xl px-6 py-24">
-    <h1>[À DÉFINIR]</h1>
-    <p>Site en cours de construction.</p>
-  </section>
+  <Hero />
+  <About />
+  <FeaturedProjects />
 </BaseLayout>

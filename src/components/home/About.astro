@@ -1,0 +1,36 @@
+---
+import FadeIn from "../FadeIn.tsx";
+---
+
+<section id="a-propos" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
+  <FadeIn client:visible />
+  <h2 class="mb-10">À propos</h2>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-2">
+    <article class="rounded-xl border border-border bg-bg-muted/60 p-6 md:col-span-2 md:row-span-2">
+      <h3 class="mb-3 text-base font-semibold">Profil</h3>
+      <p class="m-0">
+        Concepteur et développeur d'applications (CDA) / développeur full-stack.
+        La biographie détaillée est un placeholder, sans informations personnelles inventées.
+      </p>
+    </article>
+    <article class="rounded-xl border border-border p-6">
+      <h3 class="mb-3 text-base font-semibold">Localisation</h3>
+      <p class="m-0">[À DÉFINIR]</p>
+    </article>
+    <article class="rounded-xl border border-border p-6">
+      <h3 class="mb-3 text-base font-semibold">Disponibilité</h3>
+      <p class="m-0">[À DÉFINIR]</p>
+    </article>
+    <article class="rounded-xl border border-border p-6 md:col-span-2">
+      <h3 class="mb-3 text-base font-semibold">Compétences</h3>
+      <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">TypeScript</li>
+        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">Astro</li>
+        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">React</li>
+        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">Node.js</li>
+        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">PostgreSQL</li>
+        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">REST</li>
+      </ul>
+    </article>
+  </div>
+</section>
