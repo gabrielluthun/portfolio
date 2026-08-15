@@ -1,9 +1,7 @@
-# Portfolio — Gabriel Luthun
+# Portfolio  
 
-Site personnel en français.  
+
 URL : [https://gabrielluthun.github.io/portfolio/](https://gabrielluthun.github.io/portfolio/)
-
-Développeur full-stack. Je transforme des besoins métier en produits simples et utiles.
 
 ## Stack
 
