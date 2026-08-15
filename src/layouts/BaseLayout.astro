@@ -12,8 +12,8 @@ type Props = {
 };
 
 const {
-  title = "Portfolio",
-  description = "Portfolio de concepteur et développeur d'applications.",
+  title = "Gabriel Luthun — Portfolio",
+  description = "Développeur full-stack. Je transforme des besoins métier en produits simples et utiles.",
 } = Astro.props;
 const favicon = sitePath("favicon.svg", import.meta.env.BASE_URL);
 ---
@@ -28,8 +28,15 @@ const favicon = sitePath("favicon.svg", import.meta.env.BASE_URL);
     <meta name="description" content={description} />
     <title>{title}</title>
     <script is:inline>
-      const theme = localStorage.getItem("theme");
-      if (theme === "dark") document.documentElement.classList.add("dark");
+      const themeKey = "theme";
+      const applyStoredTheme = () => {
+        document.documentElement.classList.toggle(
+          "dark",
+          localStorage.getItem(themeKey) === "dark",
+        );
+      };
+      applyStoredTheme();
+      document.addEventListener("astro:after-swap", applyStoredTheme);
     </script>
     <ClientRouter />
   </head>
