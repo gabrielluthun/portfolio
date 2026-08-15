@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getAllProjects, getProjectById } from "../../services/project.service";
+import {
+  getAllProjects,
+  getProjectById,
+  resolvePreviewImage,
+} from "../../services/project.service";
 
 export function getStaticPaths() {
   return getAllProjects().map((project) => ({
@@ -21,6 +25,10 @@ if (!project) {
 }
 
 const catalogHref = `${import.meta.env.BASE_URL}projets`;
+const previewSrc = resolvePreviewImage(
+  project.previewImage,
+  import.meta.env.BASE_URL,
+);
 ---
 
 <BaseLayout title={`${project.title} — Portfolio`} description={project.shortDescription}>
@@ -29,9 +37,14 @@ const catalogHref = `${import.meta.env.BASE_URL}projets`;
       <a href={catalogHref}>Retour aux projets</a>
     </p>
     <img
-      src={project.previewImage}
+      src={previewSrc}
       alt=""
-      class="mb-10 aspect-[16/9] w-full rounded-xl object-cover"
+      class:list={[
+        "mb-10 aspect-[16/9] w-full rounded-xl",
+        project.previewFit === "contain"
+          ? "bg-black object-contain"
+          : "object-cover object-top",
+      ]}
     />
     <h1 class="mb-4">{project.title}</h1>
     <ul class="mb-8 flex list-none flex-wrap gap-2 p-0">
@@ -46,9 +59,11 @@ const catalogHref = `${import.meta.env.BASE_URL}projets`;
       <a href={project.githubUrl} rel="noreferrer noopener" target="_blank">
         Code source
       </a>
-      <a href={project.liveUrl} rel="noreferrer noopener" target="_blank">
-        Voir la démo
-      </a>
+      {project.liveUrl ? (
+        <a href={project.liveUrl} rel="noreferrer noopener" target="_blank">
+          Voir la démo
+        </a>
+      ) : null}
     </div>
   </article>
 </BaseLayout>
