@@ -7,26 +7,165 @@ const projets = sitePath("projets", import.meta.env.BASE_URL);
 ---
 
 <header
-  class="sticky top-0 z-50 border-b border-border/80 bg-bg/80 backdrop-blur-md"
+  class="site-header sticky top-0 z-50 border-b border-border/80 bg-bg/80 backdrop-blur-md"
   transition:persist="site-header"
   transition:animate="none"
 >
-  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-3 px-4 py-3 sm:px-6 sm:py-4">
+  <div class="site-header__bar mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
     <a
       href={home}
-      class="font-heading shrink-0 text-lg font-semibold tracking-tight text-fg no-underline hover:text-accent sm:text-xl"
+      class="site-header__logo font-heading shrink-0 text-lg font-semibold tracking-tight no-underline sm:text-xl"
     >
-      Gabriel Luthun
+      Gabriel <span>Luthun</span>
     </a>
-    <nav
-      aria-label="Navigation principale"
-      class="flex min-w-0 flex-wrap items-center justify-end gap-0.5 sm:gap-2"
-    >
-      <a href={home} class="rounded-md px-2 py-1.5 text-xs text-fg-muted no-underline hover:text-fg sm:px-3 sm:py-2 sm:text-sm">Accueil</a>
-      <a href={`${home}#a-propos`} class="rounded-md px-2 py-1.5 text-xs text-fg-muted no-underline hover:text-fg sm:px-3 sm:py-2 sm:text-sm">À propos</a>
-      <a href={projets} class="rounded-md px-2 py-1.5 text-xs text-fg-muted no-underline hover:text-fg sm:px-3 sm:py-2 sm:text-sm">Projets</a>
-      <a href={`${home}#contact`} class="rounded-md px-2 py-1.5 text-xs text-fg-muted no-underline hover:text-fg sm:px-3 sm:py-2 sm:text-sm">Contact</a>
-      <ThemeToggle client:load />
+
+    <nav aria-label="Navigation principale" class="site-header__nav">
+      <a href={home} data-nav="home">Accueil</a>
+      <a href={`${home}#a-propos`} data-nav="about">À propos</a>
+      <a href={projets} data-nav="projets">Projets</a>
     </nav>
+
+    <div class="site-header__actions">
+      <ThemeToggle client:load />
+      <a href={`${home}#contact`} class="site-header__cta">Me contacter</a>
+    </div>
   </div>
 </header>
+
+<script>
+  function normalizePath(pathname: string) {
+    return pathname.replace(/\/+$/, "") || "/";
+  }
+
+  function syncActive() {
+    const header = document.querySelector(".site-header");
+    if (!(header instanceof HTMLElement)) return;
+
+    const homeLink = header.querySelector<HTMLAnchorElement>('[data-nav="home"]');
+    const home = normalizePath(homeLink?.pathname ?? "/");
+    const path = normalizePath(location.pathname);
+    const hash = location.hash.replace("#", "");
+
+    let key = "";
+    if (path === home) {
+      if (hash === "a-propos") key = "about";
+      else if (hash === "contact") key = "contact";
+      else key = "home";
+    } else if (path.includes("/projets")) {
+      key = "projets";
+    }
+
+    header.querySelectorAll<HTMLAnchorElement>("[data-nav]").forEach((link) => {
+      if (link.dataset.nav === key) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  document.addEventListener("astro:page-load", syncActive);
+  window.addEventListener("hashchange", syncActive);
+  syncActive();
+</script>
+
+<style>
+  .site-header__bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 1rem;
+    row-gap: 0.75rem;
+  }
+
+  .site-header__logo {
+    justify-self: start;
+    color: var(--color-fg);
+  }
+
+  .site-header__logo:hover {
+    color: var(--color-fg);
+  }
+
+  .site-header__logo span {
+    color: var(--color-accent);
+  }
+
+  .site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+  }
+
+  .site-header__nav a {
+    border-radius: 9999px;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--color-fg-muted);
+    text-decoration: none;
+  }
+
+  .site-header__nav a:hover {
+    color: var(--color-fg);
+  }
+
+  .site-header__nav a[aria-current="page"] {
+    background-color: color-mix(in srgb, var(--color-fg) 8%, transparent);
+    color: var(--color-fg);
+  }
+
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    gap: 0.5rem;
+  }
+
+  .site-header__cta {
+    border: 1px solid color-mix(in srgb, var(--color-fg) 28%, transparent);
+    border-radius: 9999px;
+    padding: 0.375rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--color-fg);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-header__cta:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 767px) {
+    .site-header__bar {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        "logo actions"
+        "nav nav";
+    }
+
+    .site-header__logo {
+      grid-area: logo;
+    }
+
+    .site-header__nav {
+      grid-area: nav;
+      justify-content: flex-start;
+    }
+
+    .site-header__nav a {
+      padding: 0.375rem 0.625rem;
+      font-size: 0.75rem;
+    }
+
+    .site-header__actions {
+      grid-area: actions;
+    }
+
+    .site-header__cta {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>
