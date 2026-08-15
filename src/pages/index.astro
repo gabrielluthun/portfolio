@@ -1,17 +1,10 @@
 ---
-import '../styles/global.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Portfolio</title>
-  </head>
-  <body>
+<BaseLayout title="Portfolio">
+  <section class="mx-auto max-w-6xl px-6 py-24">
     <h1>[À DÉFINIR]</h1>
     <p>Site en cours de construction.</p>
-  </body>
-</html>
+  </section>
+</BaseLayout>

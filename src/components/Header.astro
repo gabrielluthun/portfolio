@@ -1,0 +1,25 @@
+---
+import ThemeToggle from "./ThemeToggle.tsx";
+
+const home = import.meta.env.BASE_URL;
+const projets = `${import.meta.env.BASE_URL}projets`;
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-border/80 bg-bg/80 backdrop-blur-md"
+  transition:persist
+  transition:name="site-header"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
+    <a href={home} class="font-heading text-sm font-semibold tracking-tight text-fg no-underline hover:text-accent">
+      Portfolio
+    </a>
+    <nav aria-label="Navigation principale" class="flex items-center gap-1 sm:gap-2">
+      <a href={home} class="rounded-md px-3 py-2 text-sm text-fg-muted no-underline hover:text-fg">Accueil</a>
+      <a href={`${home}#a-propos`} class="rounded-md px-3 py-2 text-sm text-fg-muted no-underline hover:text-fg">À propos</a>
+      <a href={projets} class="rounded-md px-3 py-2 text-sm text-fg-muted no-underline hover:text-fg">Projets</a>
+      <a href={`${home}#contact`} class="rounded-md px-3 py-2 text-sm text-fg-muted no-underline hover:text-fg">Contact</a>
+      <ThemeToggle client:load />
+    </nav>
+  </div>
+</header>
