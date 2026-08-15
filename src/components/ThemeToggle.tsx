@@ -25,7 +25,7 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
-      className="ml-2 rounded-md border border-border px-3 py-2 text-sm text-fg hover:border-accent hover:text-accent"
+      className="shrink-0 rounded-md border border-border px-2 py-1.5 text-xs text-fg hover:border-accent hover:text-accent sm:ml-2 sm:px-3 sm:py-2 sm:text-sm"
       aria-pressed={isDark}
       onClick={() => {
         const next = !isDark;
