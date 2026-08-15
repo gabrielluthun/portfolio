@@ -5,7 +5,8 @@ export type Project = {
   longDescription: string;
   tags: string[];
   previewImage: string;
+  previewFit?: "cover" | "contain";
   githubUrl: string;
-  liveUrl: string;
+  liveUrl?: string;
   featured: boolean;
 };

@@ -3,6 +3,7 @@ export type ContactPayload = {
   email: string;
   subject: string;
   message: string;
+  consent: boolean;
 };
 
 export type ContactRepositoryErrorCode = "MISSING_KEY" | "NETWORK" | "REMOTE";

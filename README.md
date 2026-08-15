@@ -27,7 +27,9 @@ npm install
 cp .env.example .env
 ```
 
-Renseigner `PUBLIC_WEB3FORMS_ACCESS_KEY` dans `.env` (clé d'accès Web3Forms). Sans cette clé, le formulaire affiche une erreur explicite. Ne jamais committer `.env`.
+Renseigner `PUBLIC_WEB3FORMS_ACCESS_KEY` dans `.env`. Ne jamais committer `.env`.
+
+Le site n'a pas de backend : le quota / filtrage côté serveur vient de Web3Forms. Le formulaire ajoute un délai de 30 s entre deux envois dans le navigateur.
 
 ## Scripts
 
@@ -43,6 +45,6 @@ Le `base` Astro est `/portfolio` : tous les liens internes passent par `import.m
 
 1. Settings → Pages → **Source : GitHub Actions**.
 2. Settings → Secrets and variables → Actions : créer le secret `PUBLIC_WEB3FORMS_ACCESS_KEY`.
-3. Pousser `develop` ou `main` : le workflow `.github/workflows/deploy.yml` construit et publie le site.
+3. Fusionner vers `main` (Gitflow) : seul un push sur `main` déclenche le workflow `.github/workflows/deploy.yml`.
 
 Le thème clair est le défaut. Aucun rose n'est utilisé dans les styles.
