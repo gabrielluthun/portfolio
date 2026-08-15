@@ -1,7 +1,11 @@
-import { submitContactMessage } from "../data/repositories/contact.repository";
+import { submitContactMessage, WEB3FORMS_ENDPOINT } from "../data/repositories/contact.repository";
 import type { ContactPayload } from "../types/contact";
 
-export type ContactFieldErrors = Partial<Record<keyof ContactPayload, string>>;
+export { WEB3FORMS_ENDPOINT };
+
+export type ContactFieldName = "name" | "email" | "subject" | "message" | "consent";
+
+export type ContactFieldErrors = Partial<Record<ContactFieldName, string>>;
 
 export type ContactServiceResult =
   | { ok: true; message: string }
@@ -65,9 +69,17 @@ export function validateContactPayload(payload: ContactPayload): ContactFieldErr
   return fields;
 }
 
+export type SubmitContactInput = ContactPayload & {
+  botcheck?: boolean;
+};
+
 export async function submitContact(
-  payload: ContactPayload,
+  payload: SubmitContactInput,
 ): Promise<ContactServiceResult> {
+  if (payload.botcheck) {
+    return { ok: true, message: "Votre message a bien été envoyé." };
+  }
+
   const data = trimPayload(payload);
   const fields = validateContactPayload(data);
 
