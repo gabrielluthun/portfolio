@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const home = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Page introuvable — Portfolio"
+  description="Cette page n'existe pas."
+>
+  <section class="mx-auto max-w-3xl px-6 py-32">
+    <p class="mb-3 text-sm font-medium tracking-wide text-accent uppercase">Erreur 404</p>
+    <h1 class="mb-4">Page introuvable</h1>
+    <p class="mb-10">
+      Cette adresse ne correspond à aucune page du portfolio.
+    </p>
+    <a
+      href={home}
+      class="rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-fg no-underline hover:bg-accent-hover hover:text-accent-fg"
+    >
+      Retour à l'accueil
+    </a>
+  </section>
+</BaseLayout>
