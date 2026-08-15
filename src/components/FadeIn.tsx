@@ -9,28 +9,47 @@ export default function FadeIn() {
       return;
     }
 
-    target.classList.add(
-      "translate-y-6",
-      "opacity-0",
-      "transition",
-      "duration-700",
-      "ease-out",
-    );
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) {
-          return;
-        }
+    let observer: IntersectionObserver | undefined;
+    const frame = window.requestAnimationFrame(() => {
+      const rect = target.getBoundingClientRect();
+      const alreadyInView = rect.top < window.innerHeight && rect.bottom > 0;
 
+      if (alreadyInView) {
         target.classList.remove("translate-y-6", "opacity-0");
-        observer.disconnect();
-      },
-      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
-    );
+        return;
+      }
 
-    observer.observe(target);
-    return () => observer.disconnect();
+      target.classList.add(
+        "translate-y-6",
+        "opacity-0",
+        "transition",
+        "duration-700",
+        "ease-out",
+      );
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry?.isIntersecting) {
+            return;
+          }
+
+          target.classList.remove("translate-y-6", "opacity-0");
+          observer?.disconnect();
+        },
+        { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
+      );
+
+      observer.observe(target);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      observer?.disconnect();
+    };
   }, []);
 
   return <span ref={ref} className="sr-only" />;
