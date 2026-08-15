@@ -1,0 +1,68 @@
+[
+  {
+    "id": "atelier-notes",
+    "title": "Atelier Notes",
+    "shortDescription": "Application de prise de notes collaborative pour petites équipes.",
+    "longDescription": "Atelier Notes est une application full-stack de prise de notes en temps réel. Le projet illustre une architecture en couches, une authentification simple et une interface minimale pensée pour la lisibilité. Les données présentées ici sont fictives et servent de démonstration au portfolio.",
+    "tags": ["TypeScript", "Astro", "Node.js", "PostgreSQL"],
+    "previewImage": "https://images.unsplash.com/photo-1517694710532-d7ae529c78d0?auto=format&fit=crop&w=1600&q=80",
+    "githubUrl": "https://github.com/example/atelier-notes",
+    "liveUrl": "https://example.com/atelier-notes",
+    "featured": true
+  },
+  {
+    "id": "veille-api",
+    "title": "Veille API",
+    "shortDescription": "API REST de veille technologique avec filtres et pagination.",
+    "longDescription": "Veille API expose un catalogue d'articles techniques via une API REST documentée. Le projet met l'accent sur la validation des entrées, la pagination et une couche d'accès aux données isolée de la logique métier. Contenu de démonstration uniquement.",
+    "tags": ["Node.js", "Express", "REST", "MongoDB"],
+    "previewImage": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
+    "githubUrl": "https://github.com/example/veille-api",
+    "liveUrl": "https://example.com/veille-api",
+    "featured": true
+  },
+  {
+    "id": "tableau-bento",
+    "title": "Tableau Bento",
+    "shortDescription": "Tableau de bord minimaliste en grille bento pour indicateurs métier.",
+    "longDescription": "Tableau Bento propose une vue d'ensemble d'indicateurs dans une grille aérée inspirée des layouts bento. L'interface privilégie le contraste, le whitespace et des cartes réutilisables. Projet fictif destiné à illustrer le design system du portfolio.",
+    "tags": ["React", "Tailwind CSS", "Vite"],
+    "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+    "githubUrl": "https://github.com/example/tableau-bento",
+    "liveUrl": "https://example.com/tableau-bento",
+    "featured": true
+  },
+  {
+    "id": "capsule-auth",
+    "title": "Capsule Auth",
+    "shortDescription": "Module d'authentification par session pour applications web.",
+    "longDescription": "Capsule Auth centralise l'inscription, la connexion et la gestion de session. Le projet sépare clairement présentation, services et persistance, sans mélanger les règles métier dans l'interface. Données mockées à titre d'exemple.",
+    "tags": ["TypeScript", "JWT", "PostgreSQL"],
+    "previewImage": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+    "githubUrl": "https://github.com/example/capsule-auth",
+    "liveUrl": "https://example.com/capsule-auth",
+    "featured": true
+  },
+  {
+    "id": "lexique-cda",
+    "title": "Lexique CDA",
+    "shortDescription": "Glossaire pédagogique des concepts vus en conception et développement d'applications.",
+    "longDescription": "Lexique CDA est un site de contenu statique qui organise un glossaire technique en fiches courtes. Il sert d'exemple de génération statique, de recherche simple et de navigation claire. Projet de démonstration, non lié à un organisme de formation.",
+    "tags": ["Astro", "Markdown", "TypeScript"],
+    "previewImage": "https://images.unsplash.com/photo-1456513080800-b27d0a3d0d0e?auto=format&fit=crop&w=1600&q=80",
+    "githubUrl": "https://github.com/example/lexique-cda",
+    "liveUrl": "https://example.com/lexique-cda",
+    "featured": false
+  },
+  {
+    "id": "minute-cli",
+    "title": "Minute CLI",
+    "shortDescription": "Outil en ligne de commande pour générer un squelette de projet.",
+    "longDescription": "Minute CLI génère un squelette d'application avec une structure de dossiers N-tier. L'outil illustre le parsing d'arguments, les templates de fichiers et une DX sobre. Dépôt et démo fictifs.",
+    "tags": ["Node.js", "CLI", "JavaScript"],
+    "previewImage": "https://images.unsplash.com/photo-1629654291663-b91ad427698f?auto=format&fit=crop&w=1600&q=80",
+    "githubUrl": "https://github.com/example/minute-cli",
+    "liveUrl": "https://example.com/minute-cli",
+    "featured": false
+  }
+]
