@@ -20,6 +20,7 @@ describe("project repository", () => {
 
     expect(project?.title).toBe("MaxTracker");
     expect(project?.liveUrl).toBe("https://maxtracker.fr/");
+    expect(project?.benefits.length).toBeGreaterThan(0);
   });
 
   it("returns undefined for an unknown id", () => {
