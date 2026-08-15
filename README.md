@@ -37,7 +37,11 @@ Le site n'a pas de backend : le quota / filtrage côté serveur vient de Web3For
 npm run dev      # http://localhost:4321/portfolio/
 npm run build    # sortie statique dans dist/
 npm run preview  # prévisualiser le build
+npm test         # unitaires + intégration (Vitest)
+npm run test:e2e # parcours navigateur (Playwright)
 ```
+
+Plan et cas : [`tests/plan.md`](tests/plan.md).
 
 Le `base` Astro est `/portfolio` : tous les liens internes passent par `import.meta.env.BASE_URL`.
 
