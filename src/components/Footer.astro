@@ -1,0 +1,24 @@
+---
+const home = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-border">
+  <div class="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <p class="m-0 text-sm text-fg-muted">© {year} Portfolio — liens à définir</p>
+    <ul class="m-0 flex list-none flex-wrap gap-4 p-0 text-sm">
+      <li>
+        <a href="https://github.com" rel="noreferrer noopener" target="_blank">GitHub</a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com" rel="noreferrer noopener" target="_blank">LinkedIn</a>
+      </li>
+      <li>
+        <a href="mailto:contact@example.com">E-mail</a>
+      </li>
+      <li>
+        <a href={home} class="no-underline hover:text-accent">Haut de page</a>
+      </li>
+    </ul>
+  </div>
+</footer>
