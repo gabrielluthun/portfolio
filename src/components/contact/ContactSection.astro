@@ -3,9 +3,11 @@ import ContactForm from "./ContactForm.tsx";
 ---
 
 <section id="contact" class="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24">
-  <h2 class="mb-4">Contact</h2>
-  <p class="mb-10">
-    Un message, une question : le formulaire ci-dessous permet de m'écrire.
-  </p>
-  <ContactForm client:load />
+  <div class="mx-auto flex max-w-xl flex-col items-center">
+    <h2 class="mb-4 text-center">Me contacter</h2>
+    <p class="mb-10 text-center">
+      Un message, une question ? <br> Une proposition d'embauche, un projet en freelance ? 👀 
+    </p>
+    <ContactForm client:load />
+  </div>
 </section>
