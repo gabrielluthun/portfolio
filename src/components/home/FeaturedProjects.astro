@@ -1,0 +1,17 @@
+---
+import FadeIn from "../FadeIn.tsx";
+import ProjectGrid from "../projects/ProjectGrid.tsx";
+import { getFeaturedProjects } from "../../services/project.service";
+
+const projects = getFeaturedProjects();
+const catalogHref = `${import.meta.env.BASE_URL}projets`;
+---
+
+<section id="projets" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
+  <FadeIn client:visible />
+  <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
+    <h2>Projets phares</h2>
+    <a href={catalogHref} class="text-sm">Tous les projets</a>
+  </div>
+  <ProjectGrid client:visible projects={projects} baseUrl={import.meta.env.BASE_URL} />
+</section>
