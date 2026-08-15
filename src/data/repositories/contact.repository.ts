@@ -1,6 +1,6 @@
 import type { ContactPayload, ContactRepositoryResult } from "../../types/contact";
 
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+export const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 export async function submitContactMessage(
   payload: ContactPayload,
