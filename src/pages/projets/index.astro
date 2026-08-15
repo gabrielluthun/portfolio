@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FadeIn from "../../components/FadeIn.tsx";
+import ProjectGrid from "../../components/projects/ProjectGrid.tsx";
+import { getAllProjects } from "../../services/project.service";
+
+const projects = getAllProjects();
+---
+
+<BaseLayout
+  title="Projets — Portfolio"
+  description="Catalogue des projets présentés sur le portfolio."
+>
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <FadeIn client:visible />
+    <h1 class="mb-4">Projets</h1>
+    <p class="mb-12">
+      Liste complète des études de cas. Les fiches sont des données de
+      démonstration.
+    </p>
+    <ProjectGrid
+      client:visible
+      projects={projects}
+      baseUrl={import.meta.env.BASE_URL}
+    />
+  </section>
+</BaseLayout>
