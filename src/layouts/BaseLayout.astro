@@ -1,0 +1,49 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SmoothScroll from "../components/SmoothScroll.tsx";
+import "../styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const {
+  title = "Portfolio",
+  description = "Portfolio de concepteur et développeur d'applications.",
+} = Astro.props;
+const favicon = `${import.meta.env.BASE_URL}favicon.svg`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <script is:inline>
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark") document.documentElement.classList.add("dark");
+    </script>
+    <ClientRouter />
+  </head>
+  <body class="flex min-h-screen flex-col bg-bg text-fg">
+    <a
+      href="#contenu"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-accent-fg"
+    >
+      Aller au contenu
+    </a>
+    <SmoothScroll client:load />
+    <Header />
+    <main id="contenu" class="flex-1" transition:animate="fade">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
