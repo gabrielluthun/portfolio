@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllProjects, getProjectById } from "../../services/project.service";
+
+export function getStaticPaths() {
+  return getAllProjects().map((project) => ({
+    params: { id: project.id },
+  }));
+}
+
+const { id } = Astro.params;
+
+if (!id) {
+  return Astro.redirect(`${import.meta.env.BASE_URL}404`);
+}
+
+const project = getProjectById(id);
+
+if (!project) {
+  return Astro.redirect(`${import.meta.env.BASE_URL}404`);
+}
+
+const catalogHref = `${import.meta.env.BASE_URL}projets`;
+---
+
+<BaseLayout title={`${project.title} — Portfolio`} description={project.shortDescription}>
+  <article class="mx-auto max-w-3xl px-6 py-24">
+    <p class="mb-6">
+      <a href={catalogHref}>Retour aux projets</a>
+    </p>
+    <img
+      src={project.previewImage}
+      alt=""
+      class="mb-10 aspect-[16/9] w-full rounded-xl object-cover"
+    />
+    <h1 class="mb-4">{project.title}</h1>
+    <ul class="mb-8 flex list-none flex-wrap gap-2 p-0">
+      {project.tags.map((tag) => (
+        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium text-fg">
+          {tag}
+        </li>
+      ))}
+    </ul>
+    <p class="mb-10 text-lg">{project.longDescription}</p>
+    <div class="flex flex-wrap gap-4">
+      <a href={project.githubUrl} rel="noreferrer noopener" target="_blank">
+        Code source
+      </a>
+      <a href={project.liveUrl} rel="noreferrer noopener" target="_blank">
+        Voir la démo
+      </a>
+    </div>
+  </article>
+</BaseLayout>
