@@ -2,9 +2,10 @@
 import FadeIn from "../FadeIn.tsx";
 import ProjectGrid from "../projects/ProjectGrid.tsx";
 import { getFeaturedProjects } from "../../services/project.service";
+import { sitePath } from "../../lib/site-path";
 
 const projects = getFeaturedProjects();
-const catalogHref = `${import.meta.env.BASE_URL}projets`;
+const catalogHref = sitePath("projets", import.meta.env.BASE_URL);
 ---
 
 <section id="projets" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
