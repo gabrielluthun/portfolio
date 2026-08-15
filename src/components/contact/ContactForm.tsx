@@ -20,7 +20,7 @@ export default function ContactForm() {
 
   return (
     <form
-      className="relative flex max-w-xl flex-col gap-4"
+      className="relative flex w-full max-w-xl flex-col gap-4 text-left"
       action={WEB3FORMS_ENDPOINT}
       method="POST"
       onSubmit={onSubmit}
