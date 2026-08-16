@@ -1,19 +1,15 @@
-# Portfolio  
-
-
-URL : [https://gabrielluthun.github.io/portfolio/](https://gabrielluthun.github.io/portfolio/)
+# Portfolio
 
 ## Stack
 
-- Astro 7 + îles React
-- TypeScript
-- Tailwind CSS v4
-- Lenis (smooth scroll)
-- View Transitions Astro
-- Projets : `src/data/projects.json` (MaxTracker, Geekment Vôtre, Hub des Savoirs)
+- **Astro 7** + React Islands
+- **TypeScript**
+- **Tailwind CSS** v4
+- **Lenis** (smooth scroll)
+- **View Transitions** Astro
 - Formulaire de contact : [Web3Forms](https://web3forms.com/)
 
-Architecture : **présentation** (`src/pages`, `src/components`) → **services** (`src/services`) → **données** (`src/data/repositories`).
+Architecture n-tiers : **présentation** (`src/pages`, `src/components`) → **services** (`src/services`) → **données** (`src/data/repositories`).
 
 ## Prérequis
 
@@ -27,9 +23,7 @@ npm install
 cp .env.example .env
 ```
 
-Renseigner `PUBLIC_WEB3FORMS_ACCESS_KEY` dans `.env`. Ne jamais committer `.env`.
-
-Le site n'a pas de backend : le quota / filtrage côté serveur vient de Web3Forms. Le formulaire ajoute un délai de 30 s entre deux envois dans le navigateur.
+Renseigner `PUBLIC_WEB3FORMS_ACCESS_KEY` dans `.env`.
 
 ## Scripts
 
@@ -41,14 +35,4 @@ npm test         # unitaires + intégration (Vitest)
 npm run test:e2e # parcours navigateur (Playwright)
 ```
 
-Plan et cas : [`tests/plan.md`](tests/plan.md).
-
-Le `base` Astro est `/portfolio` : tous les liens internes passent par `import.meta.env.BASE_URL`.
-
-## Déploiement (GitHub Pages)
-
-1. Settings → Pages → **Source : GitHub Actions**.
-2. Settings → Secrets and variables → Actions : créer le secret `PUBLIC_WEB3FORMS_ACCESS_KEY`.
-3. Fusionner vers `main` (Gitflow) : seul un push sur `main` déclenche le workflow `.github/workflows/deploy.yml`.
-
-Le thème clair est le défaut. Aucun rose n'est utilisé dans les styles.
+Plan de tests : [`tests/plan.md`](tests/plan.md).
