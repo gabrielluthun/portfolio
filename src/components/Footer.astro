@@ -1,7 +1,7 @@
 ---
 import { sitePath } from "../lib/site-path";
 
-const home = sitePath("", import.meta.env.BASE_URL);
+const privacy = sitePath("confidentialite", import.meta.env.BASE_URL);
 const year = new Date().getFullYear();
 ---
 
@@ -19,7 +19,7 @@ const year = new Date().getFullYear();
         <a href="mailto:gabriel.luthun@gmail.com">E-mail</a>
       </li>
       <li>
-        <a href={home} class="no-underline hover:text-accent">Haut de page</a>
+        <a href={privacy}>Confidentialité</a>
       </li>
     </ul>
   </div>
