@@ -67,6 +67,12 @@
     max-width: 65ch;
   }
 
+  p strong,
+  p b {
+    color: var(--color-fg);
+    font-weight: 700;
+  }
+
   a {
     color: var(--color-accent);
     text-decoration-thickness: 1px;

@@ -2,8 +2,9 @@ export type Project = {
   id: string;
   title: string;
   shortDescription: string;
-  longDescription: string;
-  benefits: string;
+  problem: string;
+  solution: string;
+  impact: string;
   tags: string[];
   previewImage?: string;
   previewFit?: "cover" | "contain" | "logo";

@@ -12,11 +12,11 @@ describe("project repository", () => {
       "maxtracker",
       "hub-des-savoirs",
       "geekment-votre",
+      "wwtbam-tribute",
       "angular-monster-slayer",
       "bots-discord-simplon",
       "air-fle-dashboard",
       "marche-et-deviens",
-      "wwtbam-tribute",
     ]);
     expect(projects.filter((project) => project.featured)).toHaveLength(4);
   });
@@ -26,7 +26,9 @@ describe("project repository", () => {
 
     expect(project?.title).toBe("MaxTracker");
     expect(project?.liveUrl).toBe("https://maxtracker.fr/");
-    expect(project?.benefits.length).toBeGreaterThan(0);
+    expect(project?.problem.length).toBeGreaterThan(0);
+    expect(project?.solution.length).toBeGreaterThan(0);
+    expect(project?.impact.length).toBeGreaterThan(0);
   });
 
   it("returns undefined for an unknown id", () => {
