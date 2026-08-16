@@ -1,16 +1,16 @@
 [
   {
     "id": "simplon-cda",
-    "period": "Mai 2024 — Juil. 2025",
+    "period": "Mai 2024 à Juil. 2025",
     "title": "Concepteur et Développeur d'Applications",
     "organization": "Simplon Hauts-de-France",
     "sections": [
       {
         "heading": "Cursus",
         "items": [
-          "Mai – juin 2024 : Bootcamp front-end : JavaScript, POO, DOM, découverte d'Angular",
-          "Juillet – août 2024 : Bootcamp back-end : bases de C# et .NET, API REST, SQL, Design Patterns",
-          "Sept. 2024 – juil. 2025 : Titre Professionnel Concepteur et Développeur d'Applications."
+          "Mai à juin 2024, bootcamp front-end (JavaScript, POO, DOM, découverte d'Angular).",
+          "Juillet à août 2024, bootcamp back-end (bases de C# et .NET, API REST, SQL, Design Patterns).",
+          "Sept. 2024 à juil. 2025, titre professionnel Concepteur et Développeur d'Applications."
         ]
       },
       {
@@ -36,7 +36,7 @@
   },
   {
     "id": "copywriter-independant",
-    "period": "Janv. 2023 — Févr. 2024",
+    "period": "Janv. 2023 à Févr. 2024",
     "title": "Copywriter",
     "organization": "Indépendant",
     "description": "Après six mois de formation au copywriting, activité en indépendant, spécialisée en e-mail marketing : écrire pour convaincre à l'écrit, pour des professionnels.",
@@ -44,19 +44,19 @@
   },
   {
     "id": "auchan-achats",
-    "period": "Sept. 2019 — Janv. 2023",
+    "period": "Sept. 2019 à Janv. 2023",
     "title": "Assistant aux achats",
-    "organization": "Auchan Retail — Villeneuve-d'Ascq",
+    "organization": "Auchan Retail, Villeneuve-d'Ascq",
     "sections": [
       {
-        "heading": "Rôle :",
+        "heading": "Rôle",
         "items": [
           "Intermédiaire unique entre les fournisseurs spécialisés boucherie / volaille et les hypermarchés Auchan en France.",
           "Mise en place de promotions locales à prix cassés."
         ]
       },
       {
-        "heading": "Chiffres :",
+        "heading": "Chiffres",
         "items": [
           "Moyenne de 1,5 M€ générés par an.",
           "Plus de 25 000 € de marge par semaine."
