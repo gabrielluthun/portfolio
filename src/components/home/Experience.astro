@@ -1,0 +1,83 @@
+---
+import { getExperiences } from "../../services/experience.service";
+
+const experiences = getExperiences();
+---
+
+<section id="parcours" class="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24">
+  <h2 class="mb-10">Parcours</h2>
+  <ol class="experience-timeline m-0 list-none p-0">
+    {
+      experiences.map((item) => (
+        <li class="experience-timeline__item">
+          <article class="rounded-xl border border-border bg-bg-muted/60 p-6 sm:p-8">
+            <p class="mb-3 text-xs font-medium uppercase tracking-wider text-accent">{item.period}</p>
+            <h3 class="mb-1">{item.title}</h3>
+            <p class="mb-6 text-sm text-fg-muted">{item.organization}</p>
+            {item.description ? (
+              <div class="mb-6 flex flex-col gap-3">
+                {item.description.split("\n\n").map((paragraph) => (
+                  <p class="m-0 max-w-none">{paragraph}</p>
+                ))}
+              </div>
+            ) : null}
+            {item.sections?.length ? (
+              <div class="mb-6 flex flex-col gap-6">
+                {item.sections.map((section) => (
+                  <div>
+                    <p class="mb-2 text-sm font-semibold text-fg">{section.heading}</p>
+                    <ul class="m-0 flex list-disc flex-col gap-2 pl-5 text-fg-muted">
+                      {section.items.map((entry) => (
+                        <li class="pl-1">{entry}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+            <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+              {item.tags.map((tag) => (
+                <li class="rounded-full bg-bg px-3 py-1 text-xs font-medium text-fg-muted">{tag}</li>
+              ))}
+            </ul>
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .experience-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 1.75rem;
+  }
+
+  .experience-timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.85rem;
+    bottom: 0.85rem;
+    left: 0.3rem;
+    width: 1px;
+    background-color: var(--color-border);
+  }
+
+  .experience-timeline__item {
+    position: relative;
+  }
+
+  .experience-timeline__item::before {
+    content: "";
+    position: absolute;
+    top: 1.15rem;
+    left: -1.56rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 9999px;
+    background-color: var(--color-accent);
+  }
+</style>
