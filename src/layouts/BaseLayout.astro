@@ -31,9 +31,10 @@ const favicon = sitePath("favicon.svg", import.meta.env.BASE_URL);
     <script is:inline>
       const themeKey = "theme";
       const applyStoredTheme = () => {
+        const stored = localStorage.getItem(themeKey);
         document.documentElement.classList.toggle(
           "dark",
-          localStorage.getItem(themeKey) === "dark",
+          stored !== "light",
         );
       };
       applyStoredTheme();
