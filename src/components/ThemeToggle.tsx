@@ -8,11 +8,11 @@ function applyTheme(isDark: boolean) {
 }
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     const syncFromStorage = () => {
-      const dark = localStorage.getItem(STORAGE_KEY) === "dark";
+      const dark = localStorage.getItem(STORAGE_KEY) !== "light";
       document.documentElement.classList.toggle("dark", dark);
       setIsDark(dark);
     };
