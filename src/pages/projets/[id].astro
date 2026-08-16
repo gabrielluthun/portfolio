@@ -26,10 +26,9 @@ if (!project) {
 }
 
 const catalogHref = sitePath("projets", import.meta.env.BASE_URL);
-const previewSrc = resolvePreviewImage(
-  project.previewImage,
-  import.meta.env.BASE_URL,
-);
+const previewSrc = project.previewImage
+  ? resolvePreviewImage(project.previewImage, import.meta.env.BASE_URL)
+  : undefined;
 const paragraphs = project.longDescription.split(/\n\n+/);
 ---
 
@@ -38,16 +37,31 @@ const paragraphs = project.longDescription.split(/\n\n+/);
     <p class="mb-6">
       <a href={catalogHref}>Retour aux projets</a>
     </p>
-    <img
-      src={previewSrc}
-      alt=""
-      class:list={[
-        "mb-10 aspect-[16/9] w-full rounded-xl",
-        project.previewFit === "contain"
-          ? "bg-black object-contain"
-          : "object-cover object-top",
-      ]}
-    />
+    {
+      previewSrc ? (
+        <img
+          src={previewSrc}
+          alt=""
+          class:list={[
+            "mb-10 aspect-[16/9] w-full rounded-xl",
+            project.previewFit === "logo"
+              ? "bg-bg-muted object-contain p-16"
+              : project.previewFit === "contain"
+                ? "bg-black object-contain"
+                : "object-cover object-top",
+          ]}
+        />
+      ) : (
+        <div
+          class="mb-10 flex aspect-[16/9] w-full items-center justify-center rounded-xl bg-bg-muted"
+          aria-hidden="true"
+        >
+          <span class="font-heading text-sm font-semibold tracking-tight text-fg-muted">
+            {project.title}
+          </span>
+        </div>
+      )
+    }
     <h1 class="mb-4">{project.title}</h1>
     <ul class="mb-10 flex list-none flex-wrap gap-2 p-0">
       {project.tags.map((tag) => (

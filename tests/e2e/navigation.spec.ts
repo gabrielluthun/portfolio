@@ -1,18 +1,20 @@
 import { expect, test } from "@playwright/test";
 
-test("home links to the project catalog", async ({ page }) => {
+test("home nav Projets scrolls to featured projects", async ({ page }) => {
   await page.goto("./");
   await expect(page.getByRole("heading", { name: "Gabriel Luthun", level: 1 })).toBeVisible();
   await page.getByRole("link", { name: "Projets", exact: true }).click();
-  await expect(page).toHaveURL(/\/projets\/?$/);
-  await expect(page.getByRole("heading", { name: "Projets" })).toBeVisible();
+  await expect(page).toHaveURL(/#projets$/);
+  await expect(page.getByRole("heading", { name: "Projets phares" })).toBeVisible();
 });
 
-test("catalog lists three projects and opens MaxTracker", async ({ page }) => {
+test("catalog lists featured and training projects and opens MaxTracker", async ({ page }) => {
   await page.goto("./projets/");
   await expect(page.getByRole("link", { name: /MaxTracker/ })).toBeVisible();
   await expect(page.getByRole("link", { name: /Geekment/ })).toBeVisible();
   await expect(page.getByRole("link", { name: /Hub des Savoirs/ })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Monster Slayer/ })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Bots Discord Simplon/ })).toBeVisible();
   await page.getByRole("link", { name: /MaxTracker/ }).click();
   await expect(page).toHaveURL(/\/projets\/maxtracker\/?$/);
   await expect(page.getByRole("heading", { name: "MaxTracker" })).toBeVisible();

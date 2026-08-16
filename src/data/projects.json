@@ -12,6 +12,19 @@
     "featured": true
   },
   {
+    "id": "hub-des-savoirs",
+    "title": "Hub des Savoirs",
+    "shortDescription": "App de révision : notes, Anki, listes chronométrées et quiz IA, en navigateur et sur le bureau.",
+    "longDescription": "Hub des Savoirs regroupe des notes (markdown ou Google Docs), des cartes Anki avec répétition espacée, des listes JetPunk chronométrées, et Plateau : des quiz générés par Gemini à partir de ces ressources.\n\nL'app est disponible dans le navigateur et en application desktop Tauri. Il n'existe pas de version iOS / Android.\n\nLes données restent sur l'appareil (localStorage), avec export et restauration JSON.",
+    "benefits": "Des candidats à des jeux télévisés de culture générale y préparent leurs révisions plus efficacement.",
+    "tags": ["React", "TypeScript", "Tauri", "Gemini"],
+    "previewImage": "assets/hub-des-savoirs.png",
+    "githubUrl": "https://github.com/gabrielluthun/hub-des-savoirs",
+    "liveUrl": "https://gabrielluthun.github.io/hub-des-savoirs/",
+    "featured": true
+  },  
+  
+  {
     "id": "geekment-votre",
     "title": "Geekment Vôtre",
     "shortDescription": "Application Android à destination d'un maître du jeu à domicile dans la région des Hauts-de-France.",
@@ -24,15 +37,63 @@
     "featured": true
   },
   {
-    "id": "hub-des-savoirs",
-    "title": "Hub des Savoirs",
-    "shortDescription": "App de révision : notes, Anki, listes chronométrées et quiz IA, en navigateur et sur le bureau.",
-    "longDescription": "Hub des Savoirs regroupe des notes (markdown ou Google Docs), des cartes Anki avec répétition espacée, des listes JetPunk chronométrées, et Plateau : des quiz générés par Gemini à partir de ces ressources.\n\nL'app est disponible dans le navigateur et en application desktop Tauri. Il n'existe pas de version iOS / Android.\n\nLes données restent sur l'appareil (localStorage), avec export et restauration JSON.",
-    "benefits": "Des candidats à des jeux télévisés de culture générale y préparent leurs révisions plus efficacement.",
-    "tags": ["React", "TypeScript", "Tauri", "Gemini"],
-    "previewImage": "assets/hub-des-savoirs.png",
-    "githubUrl": "https://github.com/gabrielluthun/hub-des-savoirs",
-    "liveUrl": "https://gabrielluthun.github.io/hub-des-savoirs/",
+    "id": "wwtbam-tribute",
+    "title": "Qui veut gagner des millions ?",
+    "shortDescription": "Jeu web de quiz inspiré de « Qui veut gagner des millions ? », en solo ou à deux en local.",
+    "longDescription": "Application web ludique inspirée de « Qui veut gagner des millions ? » : 15 questions à quatre réponses, pyramide de gains, jokers (50:50, téléphone, avis du public), thèmes prédéfinis ou personnalisés, timer optionnel, import/export JSON, bande sonore et mode PWA.\n\nLe jeu tourne entièrement dans le navigateur.",
+    "benefits": "Les soirées entre amis, en famille ou en classe peuvent enchaîner des parties avec leurs propres thèmes, sans plate-forme tierce.",
+    "tags": ["React", "TypeScript", "Tailwind CSS", "PWA"],
+    "previewImage": "assets/wwtbam-tribute.jpg",
+    "githubUrl": "https://github.com/gabrielluthun/wwtbam-tribute",
+    "liveUrl": "https://wwtbam-tribute.vercel.app",
     "featured": true
+  }, 
+  {
+    "id": "angular-monster-slayer",
+    "title": "Monster Slayer",
+    "shortDescription": "Mini-jeu de combat web en Angular / TypeScript.",
+    "longDescription": "Projet fin de formation Développeur Front-end Simplon (mai – juin 2024).\n\nApplication web interactive de type Monster Slayer : combat au tour par tour, mise en pratique de TypeScript, Angular et de la programmation orientée objet, avec une interface responsive.",
+    "benefits": "Un brief pédagogique livré sous forme de jeu jouable, pour valider les bases front-end modernes.",
+    "tags": ["Angular", "TypeScript", "POO"],
+    "previewImage": "assets/angular-monster-slayer.png",
+    "githubUrl": "https://github.com/gabrielluthun/angular-monster-slayer",
+    "liveUrl": "https://angular-monster-slayer.onrender.com",
+    "featured": false
+  },
+  {
+    "id": "bots-discord-simplon",
+    "title": "Bots Discord Simplon",
+    "shortDescription": "API et bots Discord pour l'organisation Simplon Hauts-de-France (projet CDA en équipe).",
+    "longDescription": "Projet collectif mené pendant la formation CDA chez Simplon Hauts-de-France.\n\nL'API (Nest.js / Fastify) pilote plusieurs bots Discord destinés à la communauté de formation : gestion de fonctionnalités communautaires, documentation d'architecture et déploiement.\n\n",
+    "benefits": "La communauté Simplon dispose d'outils Discord centralisés et automatisés plutôt que de process manuels improvisés.",
+    "tags": ["Nest.js", "Fastify", "TypeScript", "Discord", "PostgreSQL"],
+    "previewImage": "assets/github.svg",
+    "previewFit": "logo",
+    "githubUrl": "https://github.com/Simplon-hdf/bots-discord-api",
+    "featured": false
+  },
+  {
+    "id": "air-fle-dashboard",
+    "title": "Dashboard AIR (FLE)",
+    "shortDescription": "Tableau de bord pour les cours de français (FLE) d'une association d'accompagnement vers l'insertion.",
+    "longDescription": "Dashboard destiné à l'association Accueil Insertion Rencontre (AIR), dans le cadre de l'accompagnement de demandeurs d'asile et de réfugiés (cours de français / parcours d'insertion).\n\nProjet réalisé pendant le cursus de reconversion.",
+    "benefits": "Les équipes associatives suivent les parcours de formation linguistique dans un outil dédié complet, plutôt que dans des tableurs épars et chronophages.",
+    "tags": ["Angular", "TypeScript", "Dashboard"],
+    "previewImage": "assets/github.svg",
+    "previewFit": "logo",
+    "githubUrl": "https://github.com/accueil-insertion-rencontre/air-fle-front",
+    "featured": false
+  },
+  {
+    "id": "marche-et-deviens",
+    "title": "Marche et Deviens",
+    "shortDescription": "Proof of Concept C# / .NET pour l'entreprise Marche et Deviens, avec rendez-vous client hebdomadaires.",
+    "longDescription": "PoC réalisé pendant le bootcamp .NET Simplon (juillet – août 2024).\n\nObjectif : proposer des fonctionnalités ajoutées au site marchedeviens.com (API + front), en améliorant l'ergonomie et la performance, avec un suivi client hebdomadaire.\n\nTravail mené en groupe dans le cadre de la formation.",
+    "benefits": "Le client visualise rapidement des pistes concrètes d'évolution de son site, avant un développement plus large à l'avenir.",
+    "tags": ["C#", ".NET", "API", "PoC"],
+    "previewImage": "assets/github.svg",
+    "previewFit": "logo",
+    "githubUrl": "https://github.com/gabrielluthun/MainProjectDotNet",
+    "featured": false
   }
 ]

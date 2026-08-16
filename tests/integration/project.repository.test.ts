@@ -5,14 +5,20 @@ import {
 } from "../../src/data/repositories/project.repository";
 
 describe("project repository", () => {
-  it("loads the three case studies from JSON", () => {
+  it("loads featured and catalog projects from JSON", () => {
     const projects = findAllProjects();
 
     expect(projects.map((project) => project.id)).toEqual([
       "maxtracker",
-      "geekment-votre",
       "hub-des-savoirs",
+      "geekment-votre",
+      "angular-monster-slayer",
+      "bots-discord-simplon",
+      "air-fle-dashboard",
+      "marche-et-deviens",
+      "wwtbam-tribute",
     ]);
+    expect(projects.filter((project) => project.featured)).toHaveLength(4);
   });
 
   it("finds a project by id", () => {

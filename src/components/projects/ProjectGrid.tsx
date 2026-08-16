@@ -20,7 +20,11 @@ export default function ProjectGrid({ projects, baseUrl }: ProjectGridProps) {
           <ProjectCard
             project={project}
             href={`${prefix}projets/${project.id}`}
-            previewSrc={resolvePreviewImage(project.previewImage, prefix)}
+            previewSrc={
+              project.previewImage
+                ? resolvePreviewImage(project.previewImage, prefix)
+                : undefined
+            }
           />
         </li>
       ))}

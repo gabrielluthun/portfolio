@@ -1,0 +1,14 @@
+---
+type Props = {
+  home: string;
+};
+
+const { home } = Astro.props;
+---
+
+<a
+  href={home}
+  class="site-header__logo font-heading shrink-0 text-lg font-semibold tracking-tight no-underline sm:text-xl"
+>
+  Gabriel <span>Luthun</span>
+</a>

@@ -42,7 +42,7 @@ test("contact form succeeds when Web3Forms is intercepted", async ({ page }) => 
     "Bonjour, je souhaite discuter d'un projet.",
   );
   await page.locator("#contact-consent").check();
-  await page.getByRole("button", { name: "Envoyer" }).click();
+  await page.getByRole("button", { name: "Discutons ensemble" }).click();
 
   await expect(page.getByRole("status")).toHaveText(
     "Votre message a bien été envoyé.",

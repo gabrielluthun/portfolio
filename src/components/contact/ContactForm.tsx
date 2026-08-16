@@ -2,6 +2,7 @@ import {
   CONTACT_FIELD_LIMITS,
   WEB3FORMS_ENDPOINT,
 } from "../../services/contact.service";
+import { sitePath } from "../../lib/site-path";
 import ContactField, { contactFieldErrorId } from "./ContactField";
 import { useContactForm } from "./useContactForm";
 
@@ -17,6 +18,7 @@ export default function ContactForm() {
     accessKey,
     onSubmit,
   } = useContactForm();
+  const privacyHref = sitePath("confidentialite", import.meta.env.BASE_URL);
 
   return (
     <form
@@ -87,17 +89,22 @@ export default function ContactForm() {
             checked={consent}
             aria-invalid={Boolean(fieldErrors.consent)}
             aria-describedby={
-              fieldErrors.consent ? contactFieldErrorId("consent") : undefined
+              fieldErrors.consent
+                ? `${contactFieldErrorId("consent")} contact-privacy-note`
+                : "contact-privacy-note"
             }
             onChange={(event) => setConsent(event.target.checked)}
           />
           <span>
             J'accepte que mes données (nom, e-mail, sujet, message) soient
             utilisées uniquement pour répondre à cette demande, et transmises
-            au titulaire du site via un prestataire d'envoi d'e-mails. Elles
-            ne sont pas utilisées à des fins marketing.
+            au titulaire du site via Web3Forms. Elles ne sont pas utilisées à
+            des fins marketing.
           </span>
         </label>
+        <p id="contact-privacy-note" className="m-0 pl-7 text-sm text-fg-muted">
+          <a href={privacyHref}>Politique de confidentialité</a>
+        </p>
         {fieldErrors.consent ? (
           <p id={contactFieldErrorId("consent")} className="m-0 text-sm text-accent">
             {fieldErrors.consent}
@@ -119,7 +126,7 @@ export default function ContactForm() {
         disabled={status === "pending"}
         className="rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-fg hover:bg-accent-hover disabled:opacity-60"
       >
-        {status === "pending" ? "Envoi en cours…" : "Envoyer"}
+        {status === "pending" ? "Envoi en cours…" : "Discutons ensemble"}
       </button>
     </form>
   );
