@@ -1,0 +1,15 @@
+---
+import ThemeToggle from "../ThemeToggle.tsx";
+import MobileMenu from "./MobileMenu.tsx";
+
+type Props = {
+  home: string;
+};
+
+const { home } = Astro.props;
+---
+
+<div class="site-header__actions">
+  <ThemeToggle client:load />
+  <MobileMenu client:load home={home} />
+</div>
