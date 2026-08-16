@@ -3,6 +3,7 @@ import { ReactLenis, type LenisRef } from "lenis/react";
 
 const HASH_KEY = "portfolio-hash";
 const ALIGN_PX = 4;
+const SCROLL_DURATION = 1.15;
 
 function headerOffset() {
   return document.querySelector("header")?.getBoundingClientRect().height ?? 0;
@@ -26,6 +27,14 @@ function scrollPositionFor(target: HTMLElement) {
   return Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset());
 }
 
+function scrollToTop(lenis: LenisRef["lenis"] | undefined, animated: boolean) {
+  if (lenis) {
+    lenis.scrollTo(0, animated ? { duration: SCROLL_DURATION } : { immediate: true });
+    return;
+  }
+  window.scrollTo({ top: 0, behavior: animated ? "smooth" : "instant" });
+}
+
 export default function SmoothScroll() {
   const lenisRef = useRef<LenisRef>(null);
   const [enabled, setEnabled] = useState(false);
@@ -40,7 +49,8 @@ export default function SmoothScroll() {
   }, []);
 
   useLayoutEffect(() => {
-    const scrollToHash = () => {
+    const scrollToHash = (options?: { animated?: boolean }) => {
+      const animated = Boolean(options?.animated) && enabled;
       const id = readHash();
       if (!id) {
         return;
@@ -60,11 +70,11 @@ export default function SmoothScroll() {
 
       const lenis = lenisRef.current?.lenis;
       if (lenis) {
-        lenis.scrollTo(top, { immediate: true });
+        lenis.scrollTo(top, animated ? { duration: SCROLL_DURATION } : { immediate: true });
         return;
       }
 
-      window.scrollTo({ top, behavior: "instant" });
+      window.scrollTo({ top, behavior: animated ? "smooth" : "instant" });
     };
 
     const onClick = (event: MouseEvent) => {
@@ -74,8 +84,22 @@ export default function SmoothScroll() {
       }
 
       const url = new URL(link.href, window.location.href);
-      if (url.origin !== window.location.origin || !url.hash) {
+      if (url.origin !== window.location.origin) {
+        return;
+      }
+
+      if (!url.hash) {
         sessionStorage.removeItem(HASH_KEY);
+        if (!samePath(url)) {
+          return;
+        }
+
+        // Accueil (same page, no hash): progressive return to top.
+        event.preventDefault();
+        if (window.location.hash) {
+          history.pushState(null, "", `${window.location.pathname}${window.location.search}`);
+        }
+        scrollToTop(lenisRef.current?.lenis, enabled);
         return;
       }
 
@@ -93,22 +117,28 @@ export default function SmoothScroll() {
           `${window.location.pathname}${window.location.search}${url.hash}`,
         );
       }
-      scrollToHash();
+      scrollToHash({ animated: true });
     };
 
     const onSwap = () => {
-      window.requestAnimationFrame(scrollToHash);
+      window.requestAnimationFrame(() => scrollToHash({ animated: false }));
     };
 
-    scrollToHash();
+    const onScrollTop = () => {
+      scrollToTop(lenisRef.current?.lenis, enabled);
+    };
+
+    scrollToHash({ animated: false });
     document.addEventListener("astro:page-load", onSwap);
     document.addEventListener("astro:after-swap", onSwap);
     document.addEventListener("click", onClick);
+    window.addEventListener("portfolio:scroll-top", onScrollTop);
 
     return () => {
       document.removeEventListener("astro:page-load", onSwap);
       document.removeEventListener("astro:after-swap", onSwap);
       document.removeEventListener("click", onClick);
+      window.removeEventListener("portfolio:scroll-top", onScrollTop);
     };
   }, [enabled]);
 
