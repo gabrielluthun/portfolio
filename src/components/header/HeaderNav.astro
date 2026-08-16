@@ -1,0 +1,21 @@
+---
+import { getPrimaryNavLinks } from "./nav-links";
+
+type Props = {
+  home: string;
+};
+
+const { home } = Astro.props;
+const links = getPrimaryNavLinks(home);
+---
+
+<nav aria-label="Navigation principale" class="site-header__nav">
+  <span class="site-header__pill" hidden></span>
+  {
+    links.map((link) => (
+      <a href={link.href} data-nav={link.key}>
+        {link.label}
+      </a>
+    ))
+  }
+</nav>
