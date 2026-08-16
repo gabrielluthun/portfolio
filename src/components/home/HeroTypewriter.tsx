@@ -2,7 +2,8 @@ import { useLayoutEffect, useState } from "react";
 
 const ROLE = "Développeur full-stack";
 const NAME = "Gabriel Luthun";
-const TAGLINE = "Je transforme vos besoins métier en produits simples et utiles.";
+const TAGLINE =
+  "Je construis des applications web performantes, pensées pour vos utilisateurs et votre business.";
 const CHAR_MS = 24;
 const LINE_PAUSE_MS = 90;
 
