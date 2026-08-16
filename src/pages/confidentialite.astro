@@ -1,0 +1,148 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from "../lib/site-path";
+
+const home = sitePath("", import.meta.env.BASE_URL);
+const contactHref = `${home}#contact`;
+---
+
+<BaseLayout
+  title="Politique de confidentialité — Gabriel Luthun"
+  description="Politique de confidentialité du portfolio de Gabriel Luthun."
+>
+  <article class="privacy mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+    <p class="privacy__eyebrow mb-3 text-sm font-medium tracking-wide text-accent uppercase">
+      Mentions
+    </p>
+    <h1 class="privacy__title mb-4">Politique de confidentialité</h1>
+    <p class="privacy__lead mb-2">
+      La présente page décrit le traitement des données personnelles effectué
+      via le site portfolio de Gabriel Luthun.
+    </p>
+    <p class="mb-10 text-sm text-fg-muted">Dernière mise à jour : août 2026</p>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">1. Responsable du traitement</h2>
+      <p class="mb-3">
+        Le responsable du traitement est Gabriel Luthun, développeur, situé à
+        Lille (Hauts-de-France).
+      </p>
+      <p class="m-0">
+        Contact :{" "}
+        <a href="mailto:gabriel.luthun@gmail.com">gabriel.luthun@gmail.com</a>
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">2. Données collectées</h2>
+      <p class="mb-3">
+        Via le <a href={contactHref}>formulaire de contact</a>, les données
+        suivantes peuvent être transmises :
+      </p>
+      <ul class="mb-3 list-disc space-y-1 pl-5 text-fg-muted">
+        <li>nom ;</li>
+        <li>adresse e-mail ;</li>
+        <li>sujet ;</li>
+        <li>contenu du message.</li>
+      </ul>
+      <p class="m-0">
+        Aucune autre donnée personnelle n'est demandée par ce formulaire.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">3. Finalité et base légale</h2>
+      <p class="mb-3">
+        Ces données sont traitées exclusivement pour permettre une réponse à
+        la demande adressée. Elles ne sont pas utilisées à des fins de
+        prospection commerciale, ni cédées à des tiers à des fins marketing.
+      </p>
+      <p class="m-0">
+        La base légale du traitement est le consentement de la personne
+        concernée (case à cocher avant l'envoi du formulaire).
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">4. Destinataires</h2>
+      <p class="mb-3">
+        Les messages sont acheminés par le prestataire <a href="https://web3forms.com/" rel="noreferrer noopener" target="_blank">Web3Forms</a>, puis reçus par le responsable du traitement.
+      </p>
+      <p class="m-0">
+        Le site ne dispose pas d'une base de données propre dédiée au
+        stockage des messages de contact.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">5. Durée de conservation</h2>
+      <p class="m-0">
+        Les échanges sont conservés pour la durée nécessaire au traitement de
+        la demande et à son éventuel suivi. Une demande de suppression peut
+        être adressée à tout moment à l'adresse indiquée ci-dessus.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">6. Navigation et stockage local</h2>
+      <p class="mb-3">
+        Le site est hébergé sur GitHub Pages. Aucun outil d'analyse d'audience
+        (par exemple Google Analytics) n'est déployé sur ce portfolio.
+      </p>
+      <p class="m-0">
+        La préférence d'affichage (thème clair ou sombre) est enregistrée dans
+        le navigateur via <code class="text-sm">localStorage</code>, uniquement
+        pour restaurer ce choix lors des visites suivantes.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">7. Droits des personnes</h2>
+      <p class="mb-3">
+        Conformément à la réglementation applicable, vous disposez notamment
+        des droits d'accès, de rectification, d'effacement et de limitation,
+        dans la mesure où les données concernées sont encore détenues par le
+        responsable du traitement.
+      </p>
+      <p class="m-0">
+        Pour exercer ces droits :{" "}
+        <a href="mailto:gabriel.luthun@gmail.com">gabriel.luthun@gmail.com</a>.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-12">
+      <h2 class="privacy__heading mb-3">8. Évolutions</h2>
+      <p class="m-0">
+        La présente politique peut être mise à jour afin de refléter
+        d'éventuels changements techniques ou organisationnels. La date de
+        dernière mise à jour figure en tête de page.
+      </p>
+    </section>
+
+    <a
+      href={home}
+      class="inline-flex rounded-md border border-border px-5 py-3 text-sm font-medium text-fg no-underline hover:border-accent hover:text-accent"
+      >Retour à l'accueil</a
+    >
+  </article>
+</BaseLayout>
+
+<style>
+  .privacy :global(p),
+  .privacy :global(ul) {
+    max-width: none;
+  }
+
+  .privacy__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .privacy__heading {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    letter-spacing: -0.02em;
+  }
+
+  .privacy__lead {
+    color: var(--color-fg);
+  }
+</style>
