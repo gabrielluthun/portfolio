@@ -1,31 +1,97 @@
-<section id="a-propos" class="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24">
-  <h2 class="mb-10">À propos</h2>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-2">
-    <article class="rounded-xl border border-border bg-bg-muted/60 p-6 md:col-span-2 md:row-span-2">
-      <h3 class="mb-3 text-base font-semibold">Profil</h3>
-      <p class="m-0">
-        Développeur full-stack, je conçois et développe des produits de bout
-        en bout : du besoin jusqu'à l'outil en production.
+---
+const education = [
+  {
+    title: "Concepteur Développeur d'Applications",
+    organization: "Simplon Hauts-de-France",
+    period: "Sept. 2024 — Juil. 2025",
+    result: "Admis",
+  },
+  {
+    title: "BTS",
+    organization: "Lycée Gaston Berger, Lille",
+    period: "2017 — 2019",
+    result: "Admis",
+  },
+  {
+    title: "Bac Pro Gestion Administration",
+    organization: "Lycée les Hauts de Flandre, Seclin",
+    period: "2014 — 2017",
+    result: "Admis avec mention",
+  },
+] as const;
+
+const skills = [
+  "TypeScript",
+  "React",
+  "Astro",
+  "Kotlin",
+  "FastAPI",
+  "PostgreSQL",
+  "Nest.js",
+  "C# .NET",
+] as const;
+---
+
+<section id="profil" class="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24">
+  <h2 class="mb-10">Profil</h2>
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+    <article class="rounded-xl border border-border bg-bg-muted/60 p-6 sm:p-8">
+      <p class="m-0 mb-8 text-fg">
+        Développeur issu d'une reconversion, j'allie analyse métier et
+        maîtrise technique pour concevoir des outils performants. <br><br> Fort d'un an
+        d'expérience, je pilote les projets de développement de A à Z : de l'analyse des besoins au déploiement final.
       </p>
-    </article>
-    <article class="rounded-xl border border-border p-6">
-      <h3 class="mb-3 text-base font-semibold">Localisation</h3>
-      <p class="m-0">Lille, Hauts-de-France</p>
-    </article>
-    <article class="rounded-xl border border-border p-6">
-      <h3 class="mb-3 text-base font-semibold">Parcours</h3>
-      <p class="m-0">Titre professionnel CDA, Simplon Hauts-de-France</p>
-    </article>
-    <article class="rounded-xl border border-border p-6 md:col-span-2">
+      <ul class="m-0 mb-8 flex list-none flex-col gap-3 p-0 text-sm">
+        <li class="flex flex-wrap gap-x-2 gap-y-1">
+          <span class="font-medium text-fg">E-mail :</span>
+          <a href="mailto:gabriel.luthun@gmail.com">gabriel.luthun@gmail.com</a>
+        </li>
+        <li class="flex flex-wrap gap-x-2 gap-y-1">
+          <span class="font-medium text-fg">Localisation :</span>
+          <span class="text-fg-muted">Lille, Hauts-de-France</span>
+        </li>
+        <li class="flex flex-wrap gap-x-2 gap-y-1">
+          <span class="font-medium text-fg">Formation :</span>
+          <span class="text-fg-muted">Titre professionnel CDA</span>
+        </li>
+      </ul>
+
       <h3 class="mb-3 text-base font-semibold">Compétences</h3>
       <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
-        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">TypeScript</li>
-        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">React</li>
-        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">Astro</li>
-        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">Kotlin</li>
-        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">FastAPI</li>
-        <li class="rounded-md bg-bg-muted px-2 py-1 text-xs font-medium">PostgreSQL</li>
+        {
+          skills.map((skill) => (
+            <li class="rounded-full bg-bg px-3 py-1 text-xs font-medium text-fg-muted">
+              {skill}
+            </li>
+          ))
+        }
       </ul>
     </article>
+
+    <div>
+      <h3 class="mb-4">Formation</h3>
+      <ul class="m-0 flex list-none flex-col gap-3 p-0">
+        {
+          education.map((item) => (
+            <li class="rounded-xl border border-border bg-bg-muted/40 p-5 sm:p-6">
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div class="min-w-0 flex-1">
+                  <p class="m-0 mb-1 font-heading text-base font-semibold text-fg">
+                    {item.title}
+                  </p>
+                  <p class="m-0 mb-2 text-sm text-accent">{item.organization}</p>
+                  {"period" in item ? (
+                    <p class="m-0 text-sm text-fg-muted">{item.period}</p>
+                  ) : null}
+                </div>
+                {"result" in item ? (
+                  <p class="m-0 shrink-0 text-sm font-medium text-fg-muted">{item.result}</p>
+                ) : null}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
