@@ -3,6 +3,7 @@ import {
   submitContact,
   type ContactFieldErrors,
 } from "../../services/contact.service";
+import type { Locale } from "../../i18n/locales";
 
 const emptyFields = {
   name: "",
@@ -13,7 +14,7 @@ const emptyFields = {
 
 export type ContactFormStatus = "idle" | "pending" | "success" | "error";
 
-export function useContactForm() {
+export function useContactForm(locale: Locale = "fr") {
   const [values, setValues] = useState(emptyFields);
   const [consent, setConsent] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
@@ -39,7 +40,7 @@ export function useContactForm() {
       ...values,
       consent,
       botcheck,
-    });
+    }, locale);
 
     if (result.ok) {
       setStatus("success");
