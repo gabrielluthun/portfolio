@@ -1,16 +1,19 @@
 import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import { getMobileNavLinks } from "./nav-links";
+import type { Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
 
 type MobileMenuProps = {
   home: string;
+  locale: Locale;
 };
 
-export default function MobileMenu({ home }: MobileMenuProps) {
+export default function MobileMenu({ home, locale }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const panelId = useId();
-  const links = getMobileNavLinks(home);
+  const links = getMobileNavLinks({ home, locale });
 
   useEffect(() => {
     setMounted(true);
@@ -61,7 +64,7 @@ export default function MobileMenu({ home }: MobileMenuProps) {
         <button
           type="button"
           className="site-header__menu-btn site-header__menu-btn--drawer"
-          aria-label="Fermer le menu"
+          aria-label={t(locale, "menu.close")}
           onClick={() => setOpen(false)}
         >
           <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5 fill-none stroke-current stroke-[1.75]">
@@ -70,7 +73,7 @@ export default function MobileMenu({ home }: MobileMenuProps) {
         </button>
       </div>
 
-      <nav aria-label="Navigation mobile" className="site-header__drawer-nav">
+      <nav aria-label={locale === "fr" ? "Navigation mobile" : "Mobile navigation"} className="site-header__drawer-nav">
         {links.map((link, index) => (
           <a
             key={link.key}
@@ -93,7 +96,7 @@ export default function MobileMenu({ home }: MobileMenuProps) {
         className={`site-header__menu-btn${open ? " is-open" : ""}`}
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+        aria-label={open ? t(locale, "menu.close") : t(locale, "menu.open")}
         onClick={() => setOpen((value) => !value)}
       >
         <span className="site-header__burger" aria-hidden="true">
