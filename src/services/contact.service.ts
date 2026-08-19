@@ -1,5 +1,7 @@
 import { submitContactMessage, WEB3FORMS_ENDPOINT } from "../data/repositories/contact.repository";
 import type { ContactPayload } from "../types/contact";
+import type { Locale } from "../i18n/locales";
+import { t, tf } from "../i18n/t";
 
 export { WEB3FORMS_ENDPOINT };
 
@@ -38,36 +40,47 @@ function trimPayload(payload: ContactPayload): ContactPayload {
   };
 }
 
-export function validateContactPayload(payload: ContactPayload): ContactFieldErrors {
+export function validateContactPayload(
+  payload: ContactPayload,
+  locale: Locale = "fr",
+): ContactFieldErrors {
   const fields: ContactFieldErrors = {};
   const data = trimPayload(payload);
 
   if (data.name.length < 2) {
-    fields.name = "Le nom doit contenir au moins 2 caractères.";
+    fields.name = t(locale, "contact.validation.name.min");
   } else if (data.name.length > CONTACT_FIELD_LIMITS.name) {
-    fields.name = `Le nom ne peut pas dépasser ${CONTACT_FIELD_LIMITS.name} caractères.`;
+    fields.name = tf(locale, "contact.validation.name.max", {
+      max: CONTACT_FIELD_LIMITS.name,
+    });
   }
 
   if (!EMAIL_PATTERN.test(data.email)) {
-    fields.email = "Saisissez une adresse e-mail valide.";
+    fields.email = t(locale, "contact.validation.email.invalid");
   } else if (data.email.length > CONTACT_FIELD_LIMITS.email) {
-    fields.email = `L'e-mail ne peut pas dépasser ${CONTACT_FIELD_LIMITS.email} caractères.`;
+    fields.email = tf(locale, "contact.validation.email.max", {
+      max: CONTACT_FIELD_LIMITS.email,
+    });
   }
 
   if (data.subject.length < 3) {
-    fields.subject = "Le sujet doit contenir au moins 3 caractères.";
+    fields.subject = t(locale, "contact.validation.subject.min");
   } else if (data.subject.length > CONTACT_FIELD_LIMITS.subject) {
-    fields.subject = `Le sujet ne peut pas dépasser ${CONTACT_FIELD_LIMITS.subject} caractères.`;
+    fields.subject = tf(locale, "contact.validation.subject.max", {
+      max: CONTACT_FIELD_LIMITS.subject,
+    });
   }
 
   if (data.message.length < 10) {
-    fields.message = "Le message doit contenir au moins 10 caractères.";
+    fields.message = t(locale, "contact.validation.message.min");
   } else if (data.message.length > CONTACT_FIELD_LIMITS.message) {
-    fields.message = `Le message ne peut pas dépasser ${CONTACT_FIELD_LIMITS.message} caractères.`;
+    fields.message = tf(locale, "contact.validation.message.max", {
+      max: CONTACT_FIELD_LIMITS.message,
+    });
   }
 
   if (!data.consent) {
-    fields.consent = "Veuillez accepter le traitement de vos données pour envoyer le message.";
+    fields.consent = t(locale, "contact.validation.consent");
   }
 
   return fields;
@@ -79,18 +92,19 @@ export type SubmitContactInput = ContactPayload & {
 
 export async function submitContact(
   payload: SubmitContactInput,
+  locale: Locale = "fr",
 ): Promise<ContactServiceResult> {
   if (payload.botcheck) {
-    return { ok: true, message: "Votre message a bien été envoyé." };
+    return { ok: true, message: t(locale, "contact.response.ok") };
   }
 
   const data = trimPayload(payload);
-  const fields = validateContactPayload(data);
+  const fields = validateContactPayload(data, locale);
 
   if (Object.keys(fields).length > 0) {
     return {
       ok: false,
-      message: "Veuillez corriger les champs indiqués.",
+      message: t(locale, "contact.response.fix"),
       fields,
     };
   }
@@ -99,7 +113,7 @@ export async function submitContact(
   if (now - lastSubmitAttemptAt < CONTACT_SUBMIT_COOLDOWN_MS) {
     return {
       ok: false,
-      message: "Veuillez patienter quelques secondes avant un nouvel envoi.",
+      message: t(locale, "contact.response.cooldown"),
     };
   }
   lastSubmitAttemptAt = now;
@@ -107,25 +121,25 @@ export async function submitContact(
   const result = await submitContactMessage(data);
 
   if (result.ok) {
-    return { ok: true, message: "Votre message a bien été envoyé." };
+    return { ok: true, message: t(locale, "contact.response.ok") };
   }
 
   if (result.code === "MISSING_KEY") {
     return {
       ok: false,
-      message: "L'envoi est temporairement indisponible.",
+      message: t(locale, "contact.response.unavailable"),
     };
   }
 
   if (result.code === "NETWORK") {
     return {
       ok: false,
-      message: "Impossible de joindre le service. Réessayez plus tard.",
+      message: t(locale, "contact.response.network"),
     };
   }
 
   return {
     ok: false,
-    message: "Le message n'a pas pu être envoyé.",
+    message: t(locale, "contact.response.failed"),
   };
 }
