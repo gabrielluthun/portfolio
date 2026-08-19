@@ -10,7 +10,7 @@ export default function ProjectCard({ project, href, previewSrc }: ProjectCardPr
   return (
     <a
       href={href}
-      className="project-card block overflow-hidden rounded-xl border border-border bg-bg no-underline transition duration-300 ease-out hover:-translate-y-0.5 hover:border-accent motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+      className="project-card group block overflow-hidden rounded-xl border border-border bg-bg no-underline transition duration-300 ease-out hover:-translate-y-0.5 hover:border-accent motion-reduce:transition-none motion-reduce:hover:translate-y-0"
     >
       {previewSrc ? (
         <img
@@ -48,6 +48,12 @@ export default function ProjectCard({ project, href, previewSrc }: ProjectCardPr
             </li>
           ))}
         </ul>
+        <span className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:opacity-100">
+          Lire l'étude de cas
+          <svg aria-hidden="true" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.69L10.72 5.53a.75.75 0 1 1 1.06-1.06l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+          </svg>
+        </span>
       </div>
     </a>
   );
