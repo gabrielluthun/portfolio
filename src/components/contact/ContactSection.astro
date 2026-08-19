@@ -1,15 +1,23 @@
 ---
 import ContactForm from "./ContactForm.tsx";
+import type { Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
+
+type Props = {
+  locale?: Locale;
+};
+
+const { locale = "fr" } = Astro.props;
 ---
 
 <section id="contact" class="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24">
   <div class="mx-auto flex max-w-xl flex-col items-center">
-    <h2 class="mb-4 text-center">Me contacter</h2>
+    <h2 class="mb-4 text-center">{t(locale, "contact.title")}</h2>
     <p class="mb-10 text-center">
-      Une équipe tech à compléter ou un projet web à déléguer ?
+      {t(locale, "contact.lead")}
       <br />
-      Parlons de votre besoin et évaluons ensemble sa faisabilité.
+      {t(locale, "contact.lead2")}
     </p>
-    <ContactForm client:load />
+    <ContactForm client:load locale={locale} />
   </div>
 </section>
