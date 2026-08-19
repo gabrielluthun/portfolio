@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sitePath } from "../../lib/site-path";
+import { t } from "../../i18n/t";
+
+const locale = "en";
+const home = sitePath("en", import.meta.env.BASE_URL);
+---
+
+<BaseLayout
+  title={t(locale, "notFound.title")}
+  description={t(locale, "notFound.description")}
+  locale="en"
+>
+  <section class="mx-auto max-w-3xl px-4 py-24 sm:px-6 sm:py-32">
+    <p class="mb-3 text-sm font-medium tracking-wide text-accent uppercase">{t(locale, "notFound.eyebrow")}</p>
+    <h1 class="mb-4">{t(locale, "notFound.title")}</h1>
+    <p class="mb-10">
+      {t(locale, "notFound.message")}
+    </p>
+    <a
+      href={home}
+      class="rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-fg no-underline hover:bg-accent-hover hover:text-accent-fg"
+    >
+      {t(locale, "notFound.back")}
+    </a>
+  </section>
+</BaseLayout>
