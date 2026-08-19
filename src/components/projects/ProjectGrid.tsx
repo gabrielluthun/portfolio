@@ -1,13 +1,21 @@
 import type { Project } from "../../types/project";
+import type { Locale } from "../../i18n/locales";
 import ProjectCard from "./ProjectCard";
 import { resolvePreviewImage } from "./preview-image";
 
 type ProjectGridProps = {
   projects: Project[];
   baseUrl: string;
+  locale?: Locale;
+  projectsBasePath?: string;
 };
 
-export default function ProjectGrid({ projects, baseUrl }: ProjectGridProps) {
+export default function ProjectGrid({
+  projects,
+  baseUrl,
+  locale = "fr",
+  projectsBasePath = "projets",
+}: ProjectGridProps) {
   const prefix = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
 
   return (
@@ -19,12 +27,13 @@ export default function ProjectGrid({ projects, baseUrl }: ProjectGridProps) {
         >
           <ProjectCard
             project={project}
-            href={`${prefix}projets/${project.id}`}
+            href={`${prefix}${projectsBasePath}/${project.id}`}
             previewSrc={
               project.previewImage
                 ? resolvePreviewImage(project.previewImage, prefix)
                 : undefined
             }
+            locale={locale}
           />
         </li>
       ))}
