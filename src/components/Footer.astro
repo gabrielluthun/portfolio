@@ -2,6 +2,7 @@
 import { sitePath } from "../lib/site-path";
 
 const privacy = sitePath("confidentialite", import.meta.env.BASE_URL);
+const legal = sitePath("mentions-legales", import.meta.env.BASE_URL);
 const year = new Date().getFullYear();
 ---
 
@@ -20,6 +21,9 @@ const year = new Date().getFullYear();
       </li>
       <li>
         <a href={privacy}>Confidentialité</a>
+      </li>
+      <li>
+        <a href={legal}>Mentions légales</a>
       </li>
     </ul>
   </div>
