@@ -1,33 +1,42 @@
 ---
 import HeroTypewriter from "./HeroTypewriter.tsx";
 import { sitePath } from "../../lib/site-path";
+import { withLocalePath, type Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
 
-const home = sitePath("", import.meta.env.BASE_URL);
+type Props = {
+  locale?: Locale;
+};
+
+const { locale = "fr" } = Astro.props;
+const home = sitePath(withLocalePath(locale, ""), import.meta.env.BASE_URL);
 const portrait = sitePath("assets/portrait.png", import.meta.env.BASE_URL);
+const projectsId = locale === "fr" ? "projets" : "projects";
+const journeyId = locale === "fr" ? "parcours" : "journey";
 ---
 
 <section class="relative mx-auto flex min-h-[calc(100svh-80px)] max-w-6xl items-center px-4 py-12 sm:min-h-[calc(100svh-88px)] sm:px-6">
   <div class="flex w-full flex-col items-center gap-8 sm:gap-12 md:flex-row md:items-center md:justify-between md:gap-16">
     <div class="min-w-0 w-full md:flex-1">
-      <HeroTypewriter client:load />
+      <HeroTypewriter client:load locale={locale} />
       <div class="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-4">
         <a
-          href={`${home}#projets`}
+          href={`${home}#${projectsId}`}
           class="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg no-underline hover:bg-accent-hover hover:text-accent-fg sm:px-5 sm:py-3"
         >
-          Voir mes réalisations
+          {t(locale, "hero.cta.projects")}
         </a>
         <a
           href={`${home}#contact`}
           class="rounded-md border border-border px-4 py-2.5 text-sm font-medium text-fg no-underline hover:border-accent hover:text-accent sm:px-5 sm:py-3"
         >
-          Me contacter
+          {t(locale, "hero.cta.contact")}
         </a>
       </div>
     </div>
     <img
       src={portrait}
-      alt="Portrait de Gabriel Luthun"
+      alt={locale === "fr" ? "Portrait de Gabriel Luthun" : "Portrait of Gabriel Luthun"}
       width="288"
       height="288"
       fetchpriority="high"
@@ -36,7 +45,7 @@ const portrait = sitePath("assets/portrait.png", import.meta.env.BASE_URL);
   </div>
   <a
     href={`${home}#profil`}
-    aria-label="Aller à la section Profil"
+    aria-label={t(locale, "hero.scrollToProfile")}
     class="absolute bottom-5 left-1/2 inline-flex -translate-x-1/2 items-center justify-center rounded-full border border-border bg-bg/60 p-2 text-fg-muted no-underline backdrop-blur-sm transition hover:border-accent hover:text-accent"
   >
     <svg
