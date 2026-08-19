@@ -3,10 +3,16 @@ import {
   WEB3FORMS_ENDPOINT,
 } from "../../services/contact.service";
 import { sitePath } from "../../lib/site-path";
+import { withLocalePath, type Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
 import ContactField, { contactFieldErrorId } from "./ContactField";
 import { useContactForm } from "./useContactForm";
 
-export default function ContactForm() {
+type ContactFormProps = {
+  locale?: Locale;
+};
+
+export default function ContactForm({ locale = "fr" }: ContactFormProps) {
   const {
     values,
     setField,
@@ -17,8 +23,9 @@ export default function ContactForm() {
     message,
     accessKey,
     onSubmit,
-  } = useContactForm();
-  const privacyHref = sitePath("confidentialite", import.meta.env.BASE_URL);
+  } = useContactForm(locale);
+  const privacyRoute = locale === "fr" ? "confidentialite" : "privacy";
+  const privacyHref = sitePath(withLocalePath(locale, privacyRoute), import.meta.env.BASE_URL);
 
   return (
     <form
@@ -40,7 +47,7 @@ export default function ContactForm() {
       <ContactField
         id="contact-name"
         name="name"
-        label="Nom"
+        label={t(locale, "contact.name")}
         autoComplete="name"
         maxLength={CONTACT_FIELD_LIMITS.name}
         value={values.name}
@@ -50,7 +57,7 @@ export default function ContactForm() {
       <ContactField
         id="contact-email"
         name="email"
-        label="E-mail"
+        label={t(locale, "contact.email")}
         type="email"
         autoComplete="email"
         maxLength={CONTACT_FIELD_LIMITS.email}
@@ -61,7 +68,7 @@ export default function ContactForm() {
       <ContactField
         id="contact-subject"
         name="subject"
-        label="Sujet"
+        label={t(locale, "contact.subject")}
         maxLength={CONTACT_FIELD_LIMITS.subject}
         value={values.subject}
         error={fieldErrors.subject}
@@ -70,7 +77,7 @@ export default function ContactForm() {
       <ContactField
         id="contact-message"
         name="message"
-        label="Message"
+        label={t(locale, "contact.message")}
         type="textarea"
         maxLength={CONTACT_FIELD_LIMITS.message}
         value={values.message}
@@ -96,14 +103,11 @@ export default function ContactForm() {
             onChange={(event) => setConsent(event.target.checked)}
           />
           <span>
-            J'accepte que mes données (nom, e-mail, sujet, message) soient
-            utilisées uniquement pour répondre à cette demande, et transmises
-            au titulaire du site via Web3Forms. Elles ne sont pas utilisées à
-            des fins marketing.
+            {t(locale, "contact.consent")}
           </span>
         </label>
         <p id="contact-privacy-note" className="m-0 pl-7 text-sm text-fg-muted">
-          <a href={privacyHref}>Politique de confidentialité</a>
+          <a href={privacyHref}>{t(locale, "contact.privacy")}</a>
         </p>
         {fieldErrors.consent ? (
           <p id={contactFieldErrorId("consent")} className="m-0 text-sm text-accent">
@@ -126,7 +130,7 @@ export default function ContactForm() {
         disabled={status === "pending"}
         className="rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-fg hover:bg-accent-hover disabled:opacity-60"
       >
-        {status === "pending" ? "Envoi en cours…" : "Discutons ensemble"}
+        {status === "pending" ? t(locale, "contact.sending") : t(locale, "contact.send")}
       </button>
     </form>
   );
