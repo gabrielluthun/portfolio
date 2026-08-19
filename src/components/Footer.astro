@@ -1,8 +1,17 @@
 ---
 import { sitePath } from "../lib/site-path";
+import { withLocalePath, type Locale } from "../i18n/locales";
+import { t } from "../i18n/t";
 
-const privacy = sitePath("confidentialite", import.meta.env.BASE_URL);
-const legal = sitePath("mentions-legales", import.meta.env.BASE_URL);
+type Props = {
+  locale?: Locale;
+};
+
+const { locale = "fr" } = Astro.props;
+const privacyPath = locale === "fr" ? "confidentialite" : "privacy";
+const legalPath = locale === "fr" ? "mentions-legales" : "legal-notice";
+const privacy = sitePath(withLocalePath(locale, privacyPath), import.meta.env.BASE_URL);
+const legal = sitePath(withLocalePath(locale, legalPath), import.meta.env.BASE_URL);
 const year = new Date().getFullYear();
 ---
 
@@ -20,10 +29,10 @@ const year = new Date().getFullYear();
         <a href="mailto:gabriel.luthun@gmail.com">E-mail</a>
       </li>
       <li>
-        <a href={privacy}>Confidentialité</a>
+        <a href={privacy}>{t(locale, "footer.privacy")}</a>
       </li>
       <li>
-        <a href={legal}>Mentions légales</a>
+        <a href={legal}>{t(locale, "footer.legal")}</a>
       </li>
     </ul>
   </div>
