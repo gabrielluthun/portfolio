@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sitePath } from "../../lib/site-path";
+
+const home = sitePath("en", import.meta.env.BASE_URL);
+---
+
+<BaseLayout
+  title="Legal notice — Gabriel Luthun"
+  description="Legal notice for Gabriel Luthun's portfolio."
+  locale="en"
+>
+  <article class="legal mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+    <p class="legal__eyebrow mb-3 text-sm font-medium tracking-wide text-accent uppercase">
+      Legal
+    </p>
+    <h1 class="legal__title mb-4">Legal notice</h1>
+    <p class="legal__lead mb-2">
+      In accordance with applicable digital publication rules, the following information is provided to website visitors.
+    </p>
+    <p class="mb-10 text-sm text-fg-muted">Last update: August 2026</p>
+
+    <section class="legal__section mb-10">
+      <h2 class="legal__heading mb-3">1. Website publisher</h2>
+      <ul class="m-0 list-none space-y-1 p-0 text-fg-muted">
+        <li><strong class="text-fg">Name:</strong> Gabriel Luthun</li>
+        <li><strong class="text-fg">Status:</strong> Individual</li>
+        <li><strong class="text-fg">Location:</strong> Lille, Hauts-de-France, France</li>
+        <li>
+          <strong class="text-fg">Contact:</strong>{" "}
+          <a href="mailto:gabriel.luthun@gmail.com">gabriel.luthun@gmail.com</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="legal__section mb-10">
+      <h2 class="legal__heading mb-3">2. Hosting</h2>
+      <ul class="m-0 list-none space-y-1 p-0 text-fg-muted">
+        <li><strong class="text-fg">Host:</strong> GitHub Pages (GitHub, Inc.)</li>
+        <li><strong class="text-fg">Address:</strong> 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</li>
+        <li>
+          <strong class="text-fg">Website:</strong>{" "}
+          <a href="https://pages.github.com/" rel="noreferrer noopener" target="_blank">pages.github.com</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="legal__section mb-10">
+      <h2 class="legal__heading mb-3">3. Intellectual property</h2>
+      <p class="m-0">
+        All content on this site (texts, images, source code) belongs to Gabriel Luthun unless stated otherwise. Any full or partial reproduction is prohibited without prior permission.
+      </p>
+    </section>
+
+    <section class="legal__section mb-10">
+      <h2 class="legal__heading mb-3">4. Personal data</h2>
+      <p class="m-0">
+        Personal data processing is described in the{" "}
+        <a href={sitePath("en/privacy", import.meta.env.BASE_URL)}>
+          privacy policy</a
+        >.
+      </p>
+    </section>
+
+    <section class="legal__section mb-12">
+      <h2 class="legal__heading mb-3">5. Liability</h2>
+      <p class="m-0">
+        The publisher cannot be held liable for errors, unavailable information, or potential viruses on the website.
+      </p>
+    </section>
+
+    <a
+      href={home}
+      class="inline-flex rounded-md border border-border px-5 py-3 text-sm font-medium text-fg no-underline hover:border-accent hover:text-accent"
+      >Back to home</a
+    >
+  </article>
+</BaseLayout>
+
+<style>
+  .legal :global(p),
+  .legal :global(ul) {
+    max-width: none;
+  }
+
+  .legal__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .legal__heading {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    letter-spacing: -0.02em;
+  }
+
+  .legal__lead {
+    color: var(--color-fg);
+  }
+</style>
