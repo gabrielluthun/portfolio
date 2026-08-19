@@ -1,22 +1,26 @@
 ---
 import { sitePath } from "../lib/site-path";
+import { withLocalePath, type Locale } from "../i18n/locales";
 import HeaderActions from "./header/HeaderActions.astro";
 import HeaderLogo from "./header/HeaderLogo.astro";
 import HeaderNav from "./header/HeaderNav.astro";
 import "./header/header.css";
 
-const home = sitePath("", import.meta.env.BASE_URL);
+type Props = {
+  locale?: Locale;
+};
+
+const { locale = "fr" } = Astro.props;
+const home = sitePath(withLocalePath(locale, ""), import.meta.env.BASE_URL);
 ---
 
 <header
   class="site-header sticky top-0 z-50 border-b border-border/80 bg-bg/80 backdrop-blur-md"
-  transition:persist="site-header"
-  transition:animate="none"
 >
   <div class="site-header__bar mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
     <HeaderLogo home={home} />
-    <HeaderNav home={home} />
-    <HeaderActions home={home} />
+    <HeaderNav home={home} locale={locale} />
+    <HeaderActions home={home} locale={locale} pathname={Astro.url.pathname} />
   </div>
 </header>
 
