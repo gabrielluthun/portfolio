@@ -1,19 +1,29 @@
 import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import { getMobileNavLinks } from "./nav-links";
-import type { Locale } from "../../i18n/locales";
+import { switchLocalePathname, type Locale } from "../../i18n/locales";
 import { t } from "../../i18n/t";
+import { sitePath } from "../../lib/site-path";
 
 type MobileMenuProps = {
   home: string;
   locale: Locale;
+  pathname: string;
 };
 
-export default function MobileMenu({ home, locale }: MobileMenuProps) {
+export default function MobileMenu({ home, locale, pathname }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const panelId = useId();
   const links = getMobileNavLinks({ home, locale });
+  const frHref = sitePath(
+    switchLocalePathname(pathname, "fr", import.meta.env.BASE_URL),
+    import.meta.env.BASE_URL,
+  );
+  const enHref = sitePath(
+    switchLocalePathname(pathname, "en", import.meta.env.BASE_URL),
+    import.meta.env.BASE_URL,
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -86,6 +96,40 @@ export default function MobileMenu({ home, locale }: MobileMenuProps) {
           </a>
         ))}
       </nav>
+
+      <div
+        className="mt-8 inline-flex w-fit items-center gap-1 rounded-full border border-border bg-bg-muted/40 p-1"
+        aria-label={locale === "fr" ? "Sélecteur de langue" : "Language switcher"}
+      >
+        <a
+          href={frHref}
+          className={`rounded-full px-3 py-1.5 text-xs font-semibold no-underline transition ${
+            locale === "fr"
+              ? "bg-accent text-accent-fg"
+              : "text-fg-muted hover:text-fg"
+          }`}
+          aria-current={locale === "fr" ? "page" : undefined}
+          hreflang="fr"
+          lang="fr"
+          onClick={() => setOpen(false)}
+        >
+          FR
+        </a>
+        <a
+          href={enHref}
+          className={`rounded-full px-3 py-1.5 text-xs font-semibold no-underline transition ${
+            locale === "en"
+              ? "bg-accent text-accent-fg"
+              : "text-fg-muted hover:text-fg"
+          }`}
+          aria-current={locale === "en" ? "page" : undefined}
+          hreflang="en"
+          lang="en"
+          onClick={() => setOpen(false)}
+        >
+          EN
+        </a>
+      </div>
     </div>
   );
 
