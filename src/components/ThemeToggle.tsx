@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { Locale } from "../i18n/locales";
 
 const STORAGE_KEY = "theme";
 
@@ -7,7 +8,11 @@ function applyTheme(isDark: boolean) {
   localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
 }
 
-export default function ThemeToggle() {
+type ThemeToggleProps = {
+  locale?: Locale;
+};
+
+export default function ThemeToggle({ locale = "fr" }: ThemeToggleProps) {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
@@ -27,7 +32,15 @@ export default function ThemeToggle() {
       type="button"
       className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-fg/25 text-fg hover:border-accent hover:text-accent"
       aria-pressed={isDark}
-      aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
+      aria-label={
+        locale === "fr"
+          ? isDark
+            ? "Activer le mode clair"
+            : "Activer le mode sombre"
+          : isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+      }
       onClick={() => {
         const next = !isDark;
         setIsDark(next);

@@ -1,11 +1,19 @@
 ---
 import { getExperiences } from "../../services/experience.service";
+import type { Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
 
-const experiences = getExperiences();
+type Props = {
+  locale?: Locale;
+};
+
+const { locale = "fr" } = Astro.props;
+const experiences = getExperiences(locale);
+const journeyId = locale === "fr" ? "parcours" : "journey";
 ---
 
-<section id="parcours" class="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24">
-  <h2 class="mb-10">Parcours</h2>
+<section id={journeyId} class="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-6 sm:py-24">
+  <h2 class="mb-10">{t(locale, "journey.title")}</h2>
   <ol class="experience-timeline m-0 list-none p-0">
     {
       experiences.map((item) => (

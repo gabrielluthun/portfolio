@@ -1,35 +1,63 @@
 ---
-const education = [
-  {
-    title: "Concepteur Développeur d'Applications",
-    organization: "Simplon Hauts-de-France",
-    period: "Sept. 2024 — Juil. 2025",
-    result: "Admis",
-  },
-  {
-    title: "BTS",
-    organization: "Lycée Gaston Berger, Lille",
-    period: "2017 — 2019",
-    result: "Admis",
-  },
-  {
-    title: "Bac Pro Gestion Administration",
-    organization: "Lycée les Hauts de Flandre, Seclin",
-    period: "2014 — 2017",
-    result: "Admis avec mention",
-  },
-] as const;
-
 import SkillTabs from "./SkillTabs";
+import type { Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
 
+type Props = {
+  locale?: Locale;
+};
+
+const { locale = "fr" } = Astro.props;
+const education =
+  locale === "fr"
+    ? [
+        {
+          title: "Concepteur Développeur d'Applications",
+          organization: "Simplon Hauts-de-France",
+          period: "Sept. 2024 — Juil. 2025",
+          result: "Admis",
+        },
+        {
+          title: "BTS",
+          organization: "Lycée Gaston Berger, Lille",
+          period: "2017 — 2019",
+          result: "Admis",
+        },
+        {
+          title: "Bac Pro Gestion Administration",
+          organization: "Lycée les Hauts de Flandre, Seclin",
+          period: "2014 — 2017",
+          result: "Admis avec mention",
+        },
+      ]
+    : [
+        {
+          title: "Application Designer and Developer",
+          organization: "Simplon Hauts-de-France",
+          period: "Sep 2024 — Jul 2025",
+          result: "Passed",
+        },
+        {
+          title: "Higher Technician Diploma",
+          organization: "Lycée Gaston Berger, Lille",
+          period: "2017 — 2019",
+          result: "Passed",
+        },
+        {
+          title: "Vocational Baccalaureate in Administration",
+          organization: "Lycée les Hauts de Flandre, Seclin",
+          period: "2014 — 2017",
+          result: "Passed with honors",
+        },
+      ];
 ---
 
 <section id="profil" class="mx-auto max-w-6xl scroll-mt-28 px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-10">
-  <h2 class="mb-10">Profil</h2>
+  <h2 class="mb-10">{t(locale, "about.title")}</h2>
   <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
     <article class="rounded-xl border border-border bg-bg-muted/60 p-6 sm:p-8">
       <p class="m-0 mb-8 text-fg">
-        Ancien copywriter et assistant aux achats retail, j'ai mis ma culture du résultat au service du code. <br> <br> Aujourd'hui développeur Full-Stack, je pilote vos projets web de bout en bout : de l'analyse du besoin jusqu'au déploiement technique. <br> <br> Mon approche se résume simplement : concevoir une application robuste, entièrement pensée pour servir vos utilisateurs et votre business.
+        {t(locale, "about.bio").split("\n\n").map((paragraph) => (<><span>{paragraph}</span><br /><br /></>))}
    
       </p>
       <ul class="m-0 mb-8 flex list-none flex-col gap-3 p-0 text-sm">
@@ -38,7 +66,7 @@ import SkillTabs from "./SkillTabs";
           <a href="mailto:gabriel.luthun@gmail.com">gabriel.luthun@gmail.com</a>
         </li>
         <li class="flex flex-wrap gap-x-2 gap-y-1">
-          <span class="font-medium text-fg">Localisation :</span>
+          <span class="font-medium text-fg">{t(locale, "about.location")} :</span>
           <span class="text-fg-muted">Lille, Hauts-de-France</span>
         </li>
       </ul>
@@ -46,7 +74,7 @@ import SkillTabs from "./SkillTabs";
     </article>
 
     <div>
-      <h3 class="mb-4">Formation</h3>
+      <h3 class="mb-4">{t(locale, "about.education")}</h3>
       <ul class="m-0 flex list-none flex-col gap-3 p-0">
         {
           education.map((item) => (
@@ -74,6 +102,6 @@ import SkillTabs from "./SkillTabs";
 
   <!-- Skills – section pleine largeur sous la grille -->
   <div class="mt-24">
-    <SkillTabs client:idle />
+    <SkillTabs client:idle locale={locale} />
   </div>
 </section>

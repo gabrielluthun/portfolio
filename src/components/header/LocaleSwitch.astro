@@ -1,0 +1,53 @@
+---
+import { type Locale, switchLocalePathname } from "../../i18n/locales";
+import { sitePath } from "../../lib/site-path";
+
+type Props = {
+  locale: Locale;
+  pathname: string;
+};
+
+const { locale, pathname } = Astro.props;
+const frHref = sitePath(
+  switchLocalePathname(pathname, "fr", import.meta.env.BASE_URL),
+  import.meta.env.BASE_URL,
+);
+const enHref = sitePath(
+  switchLocalePathname(pathname, "en", import.meta.env.BASE_URL),
+  import.meta.env.BASE_URL,
+);
+---
+
+<div
+  class="hidden items-center gap-1 rounded-full border border-border bg-bg-muted/40 p-1 sm:inline-flex"
+  aria-label={locale === "fr" ? "Sélecteur de langue" : "Language switcher"}
+>
+  <a
+    href={frHref}
+    class:list={[
+      "rounded-full px-2.5 py-1 text-xs font-semibold no-underline transition",
+      locale === "fr"
+        ? "bg-accent text-accent-fg"
+        : "text-fg-muted hover:text-fg",
+    ]}
+    aria-current={locale === "fr" ? "page" : undefined}
+    hreflang="fr"
+    lang="fr"
+  >
+    FR
+  </a>
+  <a
+    href={enHref}
+    class:list={[
+      "rounded-full px-2.5 py-1 text-xs font-semibold no-underline transition",
+      locale === "en"
+        ? "bg-accent text-accent-fg"
+        : "text-fg-muted hover:text-fg",
+    ]}
+    aria-current={locale === "en" ? "page" : undefined}
+    hreflang="en"
+    lang="en"
+  >
+    EN
+  </a>
+</div>

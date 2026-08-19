@@ -1,12 +1,20 @@
 import type { Project } from "../../types/project";
+import type { Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
 
 type ProjectCardProps = {
   project: Project;
   href: string;
   previewSrc?: string;
+  locale?: Locale;
 };
 
-export default function ProjectCard({ project, href, previewSrc }: ProjectCardProps) {
+export default function ProjectCard({
+  project,
+  href,
+  previewSrc,
+  locale = "fr",
+}: ProjectCardProps) {
   return (
     <a
       href={href}
@@ -49,7 +57,7 @@ export default function ProjectCard({ project, href, previewSrc }: ProjectCardPr
           ))}
         </ul>
         <span className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:opacity-100">
-          Lire l'étude de cas
+          {t(locale, "project.card.caseStudy")}
           <svg aria-hidden="true" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.69L10.72 5.53a.75.75 0 1 1 1.06-1.06l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
           </svg>

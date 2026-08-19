@@ -1,8 +1,13 @@
 import { useState, type ReactNode } from "react";
+import type { Locale } from "../../i18n/locales";
+import { t } from "../../i18n/t";
 
 type SkillItem = { name: string; icon: ReactNode };
 
-const ASSET_BASE_URL = `${import.meta.env.BASE_URL}assets/skills/`;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const ASSET_BASE_URL = `${baseUrl}assets/skills/`;
 
 const SKILL_LOGOS: Partial<Record<string, string>> = {
   TypeScript: "typescript.png",
@@ -41,9 +46,11 @@ function techLogo(name: string): ReactNode {
   );
 }
 
-const SKILL_GROUPS: { label: string; tabIcon: ReactNode; items: SkillItem[] }[] = [
+type SkillGroup = { key: "skills.frontend" | "skills.backend" | "skills.database" | "skills.tools"; tabIcon: ReactNode; items: SkillItem[] };
+
+const SKILL_GROUPS: SkillGroup[] = [
   {
-    label: "Front-end",
+    key: "skills.frontend",
     tabIcon: (
       <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
         <path d="M14.5 2A1.5 1.5 0 0 0 13 3.5v13a1.5 1.5 0 0 0 1.5 1.5h1a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 15.5 2h-1ZM6 4a1 1 0 0 0-1 1v10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1ZM9.5 5.5a1 1 0 1 0-2 0v9a1 1 0 1 0 2 0v-9ZM11 7a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1ZM2.5 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0V9Z" />
@@ -55,7 +62,7 @@ const SKILL_GROUPS: { label: string; tabIcon: ReactNode; items: SkillItem[] }[] 
     })),
   },
   {
-    label: "Back-end",
+    key: "skills.backend",
     tabIcon: (
       <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
         <path d="M4.632 3.533A2 2 0 0 1 6.577 2h6.846a2 2 0 0 1 1.945 1.533l1.976 8.234A3.489 3.489 0 0 0 16 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234Z" />
@@ -68,7 +75,7 @@ const SKILL_GROUPS: { label: string; tabIcon: ReactNode; items: SkillItem[] }[] 
     })),
   },
   {
-    label: "Base de données",
+    key: "skills.database",
     tabIcon: (
       <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
         <path fillRule="evenodd" d="M8 1a.75.75 0 0 1 .75.75V6h-1.5V1.75A.75.75 0 0 1 8 1Zm-.75 5v3.296l-1.943-1.048a.75.75 0 0 0-1.114.757l.457 2.957-2.134 2.134A.75.75 0 0 0 3.047 15H5.5v1.25a.75.75 0 0 0 1.5 0V15h2v1.25a.75.75 0 0 0 1.5 0V15h2v1.25a.75.75 0 0 0 1.5 0V15h2.453a.75.75 0 0 0 .53-1.281l-2.134-2.134.457-2.957a.75.75 0 0 0-1.114-.757L12.25 9.296V6h-5Z" clipRule="evenodd" />
@@ -80,7 +87,7 @@ const SKILL_GROUPS: { label: string; tabIcon: ReactNode; items: SkillItem[] }[] 
     })),
   },
   {
-    label: "Outils",
+    key: "skills.tools",
     tabIcon: (
       <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
         <path fillRule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clipRule="evenodd" />
@@ -93,23 +100,27 @@ const SKILL_GROUPS: { label: string; tabIcon: ReactNode; items: SkillItem[] }[] 
   },
 ];
 
-export default function SkillTabs() {
+type SkillTabsProps = {
+  locale?: Locale;
+};
+
+export default function SkillTabs({ locale = "fr" }: SkillTabsProps) {
   const [active, setActive] = useState(0);
 
   return (
     <div>
-      <h2 className="mb-8 text-center text-accent">Stack technique</h2>
+      <h2 className="mb-8 text-center text-accent">{t(locale, "skills.title")}</h2>
 
       <div
         className="mb-8 flex flex-wrap justify-center gap-3"
         role="tablist"
-        aria-label="Catégories de compétences"
+        aria-label={locale === "fr" ? "Catégories de compétences" : "Skill categories"}
       >
         {SKILL_GROUPS.map((group, i) => {
           const isActive = i === active;
           return (
             <button
-              key={group.label}
+              key={group.key}
               type="button"
               role="tab"
               aria-selected={isActive}
@@ -121,7 +132,7 @@ export default function SkillTabs() {
               }`}
             >
               {group.tabIcon}
-              {group.label}
+              {t(locale, group.key)}
             </button>
           );
         })}

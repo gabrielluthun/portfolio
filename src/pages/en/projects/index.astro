@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ProjectGrid from "../../../components/projects/ProjectGrid.tsx";
+import { findAllProjects } from "../../../data/repositories/project.repository";
+import { t } from "../../../i18n/t";
+import { withLocalePath } from "../../../i18n/locales";
+
+const projects = findAllProjects("en");
+const projectsBasePath = withLocalePath("en", "projects");
+---
+
+<BaseLayout
+  title="Projects — Gabriel Luthun"
+  description="Project catalog from Gabriel Luthun's portfolio."
+  locale="en"
+>
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+    <h1 class="mb-4">{t("en", "projects.title")}</h1>
+    <br />
+    <ProjectGrid
+      client:visible
+      projects={projects}
+      baseUrl={import.meta.env.BASE_URL}
+      locale="en"
+      projectsBasePath={projectsBasePath}
+    />
+  </section>
+</BaseLayout>

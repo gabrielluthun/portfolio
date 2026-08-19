@@ -1,0 +1,68 @@
+[
+  {
+    "id": "simplon-cda",
+    "period": "Mai 2024 à Juil. 2025",
+    "title": "Concepteur et Développeur d'Applications",
+    "organization": "Simplon Hauts-de-France",
+    "sections": [
+      {
+        "heading": "Cursus",
+        "items": [
+          "Mai à juin 2024, bootcamp front-end (JavaScript, POO, DOM, découverte d'Angular).",
+          "Juillet à août 2024, bootcamp back-end (bases de C# et .NET, API REST, SQL, Design Patterns).",
+          "Sept. 2024 à juil. 2025, titre professionnel Concepteur et Développeur d'Applications."
+        ]
+      },
+      {
+        "heading": "Projets en cours de formation",
+        "items": [
+          "Bot Discord pour Simplon.",
+          "Dashboard pour une association accompagnant des demandeurs d'asile et réfugiés (français et code de la route)."
+        ]
+      },
+      {
+        "heading": "Compétences acquises",
+        "items": [
+          "Conception d'Applications",
+          "Bonnes pratiques de développement",
+          "Sécurité Web",
+          "Gestion de projet",
+          "Plan de tests",
+          "Déploiement"
+        ]
+      }
+    ],
+    "tags": ["Angular", "TypeScript", "C# .NET", "Nest.js", "Fastify", "Redis", "PostgreSQL"]
+  },
+  {
+    "id": "copywriter-independant",
+    "period": "Janv. 2023 à Févr. 2024",
+    "title": "Copywriter",
+    "organization": "Indépendant",
+    "description": "Après six mois de formation au copywriting, activité en indépendant, spécialisée en e-mail marketing : écrire pour convaincre à l'écrit, pour des professionnels.",
+    "tags": ["Copywriting", "E-mail marketing"]
+  },
+  {
+    "id": "auchan-achats",
+    "period": "Sept. 2019 à Janv. 2023",
+    "title": "Assistant aux achats",
+    "organization": "Auchan Retail, Villeneuve-d'Ascq",
+    "sections": [
+      {
+        "heading": "Rôle",
+        "items": [
+          "Intermédiaire unique entre les fournisseurs spécialisés boucherie / volaille et les hypermarchés Auchan en France.",
+          "Mise en place de promotions locales à prix cassés."
+        ]
+      },
+      {
+        "heading": "Chiffres",
+        "items": [
+          "Moyenne de 1,5 M€ générés par an.",
+          "Plus de 25 000 € de marge par semaine."
+        ]
+      }
+    ],
+    "tags": ["Achats", "Négociation", "Retail"]
+  }
+]

@@ -1,15 +1,17 @@
 ---
 import { getPrimaryNavLinks } from "./nav-links";
+import type { Locale } from "../../i18n/locales";
 
 type Props = {
   home: string;
+  locale: Locale;
 };
 
-const { home } = Astro.props;
-const links = getPrimaryNavLinks(home);
+const { home, locale } = Astro.props;
+const links = getPrimaryNavLinks({ home, locale });
 ---
 
-<nav aria-label="Navigation principale" class="site-header__nav">
+<nav aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"} class="site-header__nav">
   <span class="site-header__pill" hidden></span>
   {
     links.map((link) => (

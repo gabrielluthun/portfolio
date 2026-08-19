@@ -1,16 +1,16 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { resolvePreviewImage } from "../../components/projects/preview-image";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { resolvePreviewImage } from "../../../components/projects/preview-image";
 import {
   findAllProjects,
   findProjectById,
-} from "../../data/repositories/project.repository";
-import { renderInlineMarkdown } from "../../lib/inline-markdown";
-import { sitePath } from "../../lib/site-path";
-import { t } from "../../i18n/t";
+} from "../../../data/repositories/project.repository";
+import { renderInlineMarkdown } from "../../../lib/inline-markdown";
+import { sitePath } from "../../../lib/site-path";
+import { t } from "../../../i18n/t";
 
 export function getStaticPaths() {
-  return findAllProjects().map((project) => ({
+  return findAllProjects("en").map((project) => ({
     params: { id: project.id },
   }));
 }
@@ -18,31 +18,30 @@ export function getStaticPaths() {
 const { id } = Astro.params;
 
 if (!id) {
-  return Astro.redirect(sitePath("404", import.meta.env.BASE_URL));
+  return Astro.redirect(sitePath("en/404", import.meta.env.BASE_URL));
 }
 
-const project = findProjectById(id);
+const project = findProjectById(id, "en");
 
 if (!project) {
-  return Astro.redirect(sitePath("404", import.meta.env.BASE_URL));
+  return Astro.redirect(sitePath("en/404", import.meta.env.BASE_URL));
 }
 
-const catalogHref = sitePath("projets", import.meta.env.BASE_URL);
-const locale = "fr";
+const catalogHref = sitePath("en/projects", import.meta.env.BASE_URL);
 const previewSrc = project.previewImage
   ? resolvePreviewImage(project.previewImage, import.meta.env.BASE_URL)
   : undefined;
 const caseStudy = [
-  { label: t(locale, "projects.problem"), text: project.problem },
-  { label: t(locale, "projects.solution"), text: project.solution },
-  { label: t(locale, "projects.impact"), text: project.impact },
+  { label: t("en", "projects.problem"), text: project.problem },
+  { label: t("en", "projects.solution"), text: project.solution },
+  { label: t("en", "projects.impact"), text: project.impact },
 ] as const;
 ---
 
-<BaseLayout title={`${project.title} — Gabriel Luthun`} description={project.shortDescription}>
+<BaseLayout title={`${project.title} — Gabriel Luthun`} description={project.shortDescription} locale="en">
   <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
     <p class="mb-6">
-      <a href={catalogHref}>{t(locale, "projects.back")}</a>
+      <a href={catalogHref}>{t("en", "projects.back")}</a>
     </p>
     {
       previewSrc ? (
@@ -96,7 +95,7 @@ const caseStudy = [
           target="_blank"
           class="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg no-underline hover:bg-accent-hover"
         >
-          {t(locale, "projects.demo")}
+          {t("en", "projects.demo")}
           <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm5.22-.22a.75.75 0 0 1 1.06 0l5 5a.75.75 0 1 1-1.06 1.06L11 7.81V12a.75.75 0 0 1-1.5 0V6.25a.75.75 0 0 1 .75-.75h5.75a.75.75 0 0 1 0 1.5H12.69l3.53 3.53a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
           </svg>
@@ -116,7 +115,7 @@ const caseStudy = [
         >
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
         </svg>
-        {t(locale, "projects.source")}
+        {t("en", "projects.source")}
       </a>
     </div>
   </article>

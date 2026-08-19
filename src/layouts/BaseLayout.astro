@@ -5,22 +5,25 @@ import Footer from "../components/Footer.astro";
 import SmoothScroll from "../components/SmoothScroll.tsx";
 import BackToTop from "../components/BackToTop.tsx";
 import { sitePath } from "../lib/site-path";
+import { getLocaleFromPathname, type Locale } from "../i18n/locales";
 import "../styles/global.css";
 
 type Props = {
   title?: string;
   description?: string;
+  locale?: Locale;
 };
 
 const {
   title = "Gabriel Luthun — Portfolio",
   description = "Je construis des outils web performants, pensés pour vos utilisateurs et votre business.",
+  locale = getLocaleFromPathname(Astro.url.pathname),
 } = Astro.props;
 const favicon = sitePath("favicon.svg", import.meta.env.BASE_URL);
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href={favicon} />
@@ -47,14 +50,14 @@ const favicon = sitePath("favicon.svg", import.meta.env.BASE_URL);
       href="#contenu"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-accent-fg"
     >
-      Aller au contenu
+      {locale === "fr" ? "Aller au contenu" : "Skip to content"}
     </a>
     <SmoothScroll client:load />
     <BackToTop client:load />
-    <Header />
+    <Header locale={locale} />
     <main id="contenu" class="flex-1" transition:animate="fade">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
   </body>
 </html>

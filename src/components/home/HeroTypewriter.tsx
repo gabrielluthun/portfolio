@@ -1,13 +1,12 @@
 import { useLayoutEffect, useState } from "react";
+import type { Locale } from "../../i18n/locales";
 
-const ROLE = "Développeur full-stack";
 const NAME = "Gabriel Luthun";
-const TAGLINE =
-  "Je construis des applications web performantes, pensées pour vos utilisateurs et votre business.";
 const CHAR_MS = 24;
 const LINE_PAUSE_MS = 90;
 
 let hasPlayedThisDocument = false;
+let lastAnimatedLocale: Locale | null = null;
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -53,18 +52,41 @@ function Caret() {
   );
 }
 
-export default function HeroTypewriter() {
-  const [role, setRole] = useState(ROLE);
+type HeroTypewriterProps = {
+  locale?: Locale;
+};
+
+const COPY: Record<Locale, { role: string; tagline: string }> = {
+  fr: {
+    role: "Développeur full-stack",
+    tagline:
+      "Je construis des outils web performants, pensés pour vos utilisateurs et votre business.",
+  },
+  en: {
+    role: "Full-stack developer",
+    tagline:
+      "I build high-performance web tools designed for your users and your business.",
+  },
+};
+
+export default function HeroTypewriter({ locale = "fr" }: HeroTypewriterProps) {
+  const copy = COPY[locale];
+  const [role, setRole] = useState(copy.role);
   const [name, setName] = useState(NAME);
-  const [tagline, setTagline] = useState(TAGLINE);
+  const [tagline, setTagline] = useState(copy.tagline);
   const [line, setLine] = useState<"role" | "name" | "tagline" | "done">("done");
 
   useLayoutEffect(() => {
-    if (hasPlayedThisDocument || prefersReducedMotion()) {
+    if (prefersReducedMotion()) {
+      return;
+    }
+
+    if (hasPlayedThisDocument && lastAnimatedLocale === locale) {
       return;
     }
 
     hasPlayedThisDocument = true;
+    lastAnimatedLocale = locale;
     const controller = new AbortController();
 
     setRole("");
@@ -73,7 +95,7 @@ export default function HeroTypewriter() {
     setLine("role");
 
     void (async () => {
-      await typeLine(ROLE, setRole, controller.signal);
+      await typeLine(copy.role, setRole, controller.signal);
       if (controller.signal.aborted) {
         return;
       }
@@ -85,7 +107,7 @@ export default function HeroTypewriter() {
       }
 
       setLine("tagline");
-      await typeLine(TAGLINE, setTagline, controller.signal);
+      await typeLine(copy.tagline, setTagline, controller.signal);
       if (controller.signal.aborted) {
         return;
       }
@@ -94,13 +116,13 @@ export default function HeroTypewriter() {
     })();
 
     return () => controller.abort();
-  }, []);
+  }, [copy.role, copy.tagline]);
 
   return (
     <>
       <p className="relative mb-4 min-w-0 text-sm font-medium tracking-wide text-accent uppercase">
         <span className="invisible" aria-hidden="true">
-          {ROLE}
+          {copy.role}
         </span>
         <span className="absolute inset-0 break-words">
           {role}
@@ -118,7 +140,7 @@ export default function HeroTypewriter() {
       </h1>
       <p className="relative mt-4 max-w-xl min-w-0 text-base sm:mt-6 sm:text-lg">
         <span className="invisible" aria-hidden="true">
-          {TAGLINE}
+          {copy.tagline}
         </span>
         <span className="absolute inset-0 break-words">
           {tagline}
