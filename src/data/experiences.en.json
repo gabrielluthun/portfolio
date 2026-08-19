@@ -1,0 +1,68 @@
+[
+  {
+    "id": "simplon-cda",
+    "period": "May 2024 to Jul 2025",
+    "title": "Application Designer and Developer",
+    "organization": "Simplon Hauts-de-France",
+    "sections": [
+      {
+        "heading": "Training path",
+        "items": [
+          "May to June 2024: front-end bootcamp (JavaScript, OOP, DOM, Angular discovery).",
+          "July to August 2024: back-end bootcamp (C# and .NET basics, REST APIs, SQL, Design Patterns).",
+          "Sep 2024 to Jul 2025: professional qualification in application design and development."
+        ]
+      },
+      {
+        "heading": "Projects during training",
+        "items": [
+          "Discord bot project for Simplon.",
+          "Dashboard for a nonprofit supporting asylum seekers and refugees (French and driving code support)."
+        ]
+      },
+      {
+        "heading": "Skills acquired",
+        "items": [
+          "Application design",
+          "Development best practices",
+          "Web security",
+          "Project management",
+          "Test planning",
+          "Deployment"
+        ]
+      }
+    ],
+    "tags": ["Angular", "TypeScript", "C# .NET", "Nest.js", "Fastify", "Redis", "PostgreSQL"]
+  },
+  {
+    "id": "copywriter-independant",
+    "period": "Jan 2023 to Feb 2024",
+    "title": "Copywriter",
+    "organization": "Freelance",
+    "description": "After six months of copywriting training, I worked as a freelancer focused on email marketing: writing persuasive copy for professionals.",
+    "tags": ["Copywriting", "Email marketing"]
+  },
+  {
+    "id": "auchan-achats",
+    "period": "Sep 2019 to Jan 2023",
+    "title": "Buying Assistant",
+    "organization": "Auchan Retail, Villeneuve-d'Ascq",
+    "sections": [
+      {
+        "heading": "Role",
+        "items": [
+          "Single point of contact between butcher/poultry suppliers and Auchan hypermarkets in France.",
+          "Setup of local high-discount promotional campaigns."
+        ]
+      },
+      {
+        "heading": "Results",
+        "items": [
+          "Average of €1.5M generated per year.",
+          "More than €25,000 margin per week."
+        ]
+      }
+    ],
+    "tags": ["Procurement", "Negotiation", "Retail"]
+  }
+]
