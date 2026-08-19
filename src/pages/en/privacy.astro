@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sitePath } from "../../lib/site-path";
+
+const home = sitePath("en", import.meta.env.BASE_URL);
+const contactHref = `${home}#contact`;
+---
+
+<BaseLayout
+  title="Privacy policy — Gabriel Luthun"
+  description="Privacy policy for Gabriel Luthun's portfolio."
+  locale="en"
+>
+  <article class="privacy mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+    <p class="privacy__eyebrow mb-3 text-sm font-medium tracking-wide text-accent uppercase">
+      Legal
+    </p>
+    <h1 class="privacy__title mb-4">Privacy policy</h1>
+    <p class="privacy__lead mb-2">
+      This page explains how personal data is processed through Gabriel Luthun's portfolio website.
+    </p>
+    <p class="mb-10 text-sm text-fg-muted">Last update: August 2026</p>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">1. Data controller</h2>
+      <p class="mb-3">
+        The data controller is Gabriel Luthun, developer, based in Lille (Hauts-de-France, France).
+      </p>
+      <p class="m-0">
+        Contact: <a href="mailto:gabriel.luthun@gmail.com">gabriel.luthun@gmail.com</a>
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">2. Collected data</h2>
+      <p class="mb-3">
+        Through the <a href={contactHref}>contact form</a>, the following data may be submitted:
+      </p>
+      <ul class="mb-3 list-disc space-y-1 pl-5 text-fg-muted">
+        <li>name;</li>
+        <li>email address;</li>
+        <li>subject;</li>
+        <li>message content.</li>
+      </ul>
+      <p class="m-0">No other personal data is requested by this form.</p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">3. Purpose and legal basis</h2>
+      <p class="mb-3">
+        This data is processed only to answer the request submitted. It is not used for marketing outreach and is not sold or shared for marketing purposes.
+      </p>
+      <p class="m-0">
+        The legal basis is user consent (checkbox required before form submission).
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">4. Recipients</h2>
+      <p class="mb-3">
+        Messages are routed by <a href="https://web3forms.com/" rel="noreferrer noopener" target="_blank">Web3Forms</a>, then received by the data controller.
+      </p>
+      <p class="m-0">
+        This website does not maintain its own dedicated database for storing contact messages.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">5. Retention period</h2>
+      <p class="m-0">
+        Exchanges are kept only for the time needed to process and follow up on the request. A deletion request can be made at any time to the contact address above.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">6. Browsing and local storage</h2>
+      <p class="mb-3">
+        The website is hosted on GitHub Pages. No analytics tool (for example Google Analytics) is deployed on this portfolio.
+      </p>
+      <p class="m-0">
+        Display preference (light or dark theme) is stored in the browser through <code class="text-sm">localStorage</code>, only to restore this choice on future visits.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-10">
+      <h2 class="privacy__heading mb-3">7. Data subject rights</h2>
+      <p class="mb-3">
+        Under applicable regulation, you may exercise rights of access, rectification, deletion, and restriction where relevant data is still held by the controller.
+      </p>
+      <p class="m-0">
+        To exercise these rights: <a href="mailto:gabriel.luthun@gmail.com">gabriel.luthun@gmail.com</a>.
+      </p>
+    </section>
+
+    <section class="privacy__section mb-12">
+      <h2 class="privacy__heading mb-3">8. Updates</h2>
+      <p class="m-0">
+        This policy may be updated to reflect technical or organizational changes. The latest update date appears at the top of this page.
+      </p>
+    </section>
+
+    <a
+      href={home}
+      class="inline-flex rounded-md border border-border px-5 py-3 text-sm font-medium text-fg no-underline hover:border-accent hover:text-accent"
+      >Back to home</a
+    >
+  </article>
+</BaseLayout>
+
+<style>
+  .privacy :global(p),
+  .privacy :global(ul) {
+    max-width: none;
+  }
+
+  .privacy__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .privacy__heading {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    letter-spacing: -0.02em;
+  }
+
+  .privacy__lead {
+    color: var(--color-fg);
+  }
+</style>
