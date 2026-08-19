@@ -15,9 +15,9 @@
   {
     "id": "hub-des-savoirs",
     "title": "Hub des Savoirs",
-    "shortDescription": "Hub de révision unifié : notes, répétition espacée, drills chronométrés et quiz générés par IA, 100% hors ligne.",
-    "problem": "Préparer un concours force à jongler entre multiples outils de révision. Cette fragmentation fait **exploser la charge mentale** et disperse la progression.",
-    "solution": "Conception d'un **hub de révision unifié** centralisant notes, répétition espacée et quiz IA. L'ensemble est **synchronisé localement** avec un système d'export / restauration.",
+    "shortDescription": "Outil de révision unifié pour candidats de jeux télé : notes, répétition espacée, drills chronométrés et quiz IA, 100% hors ligne.",
+    "problem": "Préparer une participation à un jeu télé impose de jongler entre plusieurs outils de révision. Cette fragmentation fait **exploser la charge mentale** et disperse la progression.",
+    "solution": "Conception d'un **outil de révision unifié** pour candidats de jeux télé, centralisant notes, répétition espacée et quiz IA. L'ensemble est **synchronisé localement** avec un système d'export / restauration.",
     "impact": "**Sessions de révision denses** et focalisées, avec une **maîtrise totale et sécurisée** des données personnelles.",
     "tags": ["React", "TypeScript", "Tauri", "Gemini"],
     "previewImage": "assets/hub-des-savoirs.png",
