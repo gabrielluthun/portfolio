@@ -2,7 +2,7 @@ export const en = {
   "nav.home": "Home",
   "nav.profile": "Profile",
   "nav.projects": "Projects",
-  "nav.journey": "Journey",
+  "nav.journey": "Experience",
   "nav.contact": "Let's talk",
   "menu.open": "Open menu",
   "menu.close": "Close menu",
@@ -35,7 +35,7 @@ export const en = {
   "projects.demo": "View demo",
   "projects.source": "Source code",
 
-  "journey.title": "Journey",
+  "journey.title": "Experience",
 
   "contact.title": "Contact",
   "contact.lead": "Need to strengthen your tech team or delegate a web project?",
