@@ -16,5 +16,5 @@ const { home, locale, pathname } = Astro.props;
 <div class="site-header__actions">
   <LocaleSwitch locale={locale} pathname={pathname} />
   <ThemeToggle client:load locale={locale} />
-  <MobileMenu client:load home={home} locale={locale} />
+  <MobileMenu client:load home={home} locale={locale} pathname={pathname} />
 </div>
