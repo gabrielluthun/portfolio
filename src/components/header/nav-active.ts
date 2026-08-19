@@ -20,7 +20,7 @@ export function resolveNavKey(input: {
   const path = normalizePath(input.pathname);
   const home = normalizePath(input.homePath);
 
-  if (path.includes("/projets") && path !== home) return "projets";
+  if ((path.includes("/projets") || path.includes("/projects")) && path !== home) return "projets";
   if (path !== home) return "";
 
   let key: string = "home";
